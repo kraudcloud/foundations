@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ingress
+  namespace: foundations
+spec:
+  releaseName: ingress-public
+  serviceAccountName: flux-admin
+  chart:
+    spec:
+      chart: kubernetes-ingress
+      version: "1.40.*"
+      sourceRef:
+        kind: HelmRepository
+        name: haproxy
+        namespace: foundations
+  interval: 1h0m0s
+  install:
+    createNamespace: true
+  values:
+    controller:
+      kind: Deployment
+      ingressClass: public
+      ingressClassResource:
+        name: public
+        enabled: true
+        default: false
+      service:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        {{- if .Values.foundations }}
+        {{- if .Values.foundations.ingress }}
+        {{- if .Values.foundations.ingress.public }}
+        {{- if .Values.foundations.ingress.public.IP }}
+        annotations:
+          io.cilium/lb-ipam-ips: "{{ .Values.foundations.ingress.public.IP }}"
+        {{- end }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+        loadBalancerClass: io.cilium/bgp-control-plane
+
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: haproxy
+  namespace: foundations
+spec:
+  interval: 1h0m0s
+  url: https://haproxytech.github.io/helm-charts

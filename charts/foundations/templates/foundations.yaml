@@ -1,0 +1,69 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: foundations
+  namespace: foundations
+spec:
+  interval: 1m0s
+  ref:
+    branch: v1
+  url: https://github.com/kraudcloud/foundations.git
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: foundations
+  namespace: foundations
+spec:
+  releaseName: foundations
+  serviceAccountName: flux-admin
+  interval: 1h0m0s
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: charts/foundations
+      version: "0.1.*"
+      sourceRef:
+        kind: GitRepository
+        name: foundations
+        namespace: foundations
+  valuesFrom:
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: foundations.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: foundations-config
+  namespace: foundations
+spec:
+  releaseName: foundations-config
+  serviceAccountName: flux-admin
+  interval: 10m0s
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: charts/foundations-config
+      version: "0.1.*"
+      sourceRef:
+        kind: GitRepository
+        name: foundations
+        namespace: foundations
+  dependsOn:
+    - name: foundations
+  valuesFrom:
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: foundations.yaml
