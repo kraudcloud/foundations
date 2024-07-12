@@ -12,14 +12,10 @@ releases:
     namespace: argocd
     chart: argo/argo-cd
     version: 7.3.3
-
-  - name: localpv-provisioner
-    namespace: openebs
-    chart: localpv-provisioner/localpv-provisioner
-    version: 4.1.0
     values:
-      - analytics:
-          enabled: false
+      - configs:
+          params:
+            application.namespaces: "argocd, foundations"
 
 
   - name: cilium

@@ -1,0 +1,74 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kraud-enterprise-foundations
+  namespace: argocd
+  # this is broken
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Kraud Enterprise Cluster Foundations
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  sourceNamespaces:
+    - foundations
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: foundations
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: localpv-provisioner
+  namespace: foundations
+spec:
+  project: kraud-enterprise-foundations
+  source:
+    repoURL: https://openebs.github.io/dynamic-localpv-provisioner
+    targetRevision: "4.1.0"
+    chart: localpv-provisioner
+    helm:
+      valuesObject:
+        analytics:
+          enables: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openebs
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: foundations
+spec:
+  project: kraud-enterprise-foundations
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: "56.8.2"
+    chart: kube-prometheus-stack
+    helm:
+      valuesObject:
+        analytics:
+          enables: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      # https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue
+      - ServerSideApply=true
