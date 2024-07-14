@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo
+  name: argocd
   namespace: kcef-system
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: kcef
+  project: kcef-system
   source:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: "7.3.*"

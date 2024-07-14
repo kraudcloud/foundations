@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: kcef
+  name: kcef-system
   namespace: kcef-system
   finalizers:
   - resources-finalizer.argocd.argoproj.io

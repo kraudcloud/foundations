@@ -15,7 +15,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -31,7 +31,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: applicationset-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -47,7 +47,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -58,12 +58,12 @@ apiVersion: v1
 kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -79,7 +79,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -95,7 +95,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: dex-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -110,7 +110,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -127,7 +127,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-secret
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -143,7 +143,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -167,7 +167,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-cmd-params-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -187,13 +187,13 @@ data:
   controller.self.heal.timeout.seconds: "5"
   controller.status.processors: "20"
   otlp.address: ""
-  redis.server: argo-argocd-redis:6379
-  repo.server: argo-argocd-repo-server:8081
+  redis.server: argocd-redis:6379
+  repo.server: argocd-repo-server:8081
   reposerver.log.format: text
   reposerver.log.level: info
   reposerver.parallelism.limit: "0"
   server.basehref: /
-  server.dex.server: https://argo-argocd-dex-server:5556
+  server.dex.server: https://argocd-dex-server:5556
   server.dex.server.strict.tls: "false"
   server.disable.auth: "false"
   server.enable.gzip: "true"
@@ -214,7 +214,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-gpg-keys-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
@@ -228,7 +228,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -246,7 +246,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-rbac-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -266,7 +266,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-ssh-known-hosts-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
@@ -296,7 +296,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-tls-certs-cm
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
@@ -305,12 +305,12 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: argo-argocd-redis-health-configmap
+  name: argocd-redis-health-configmap
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21023,11 +21023,11 @@ spec:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21048,11 +21048,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21098,11 +21098,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21158,11 +21158,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21170,7 +21170,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
 subjects:
 - kind: ServiceAccount
   name: argocd-application-controller
@@ -21180,11 +21180,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21192,7 +21192,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
 subjects:
 - kind: ServiceAccount
   name: argocd-notifications-controller
@@ -21202,11 +21202,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21214,7 +21214,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: argo-argocd-server
+  name: argocd-server
 subjects:
 - kind: ServiceAccount
   name: argocd-server
@@ -21224,12 +21224,12 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21277,12 +21277,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-applicationset-controller
+  name: argocd-applicationset-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: applicationset-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21372,12 +21372,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21423,12 +21423,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21439,12 +21439,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21489,12 +21489,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: argo-argocd-dex-server
+  name: argocd-dex-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: dex-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21514,12 +21514,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21527,7 +21527,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
 subjects:
   - kind: ServiceAccount
     name: argocd-application-controller
@@ -21537,12 +21537,12 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-applicationset-controller
+  name: argocd-applicationset-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: applicationset-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21550,7 +21550,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-applicationset-controller
+  name: argocd-applicationset-controller
 subjects:
   - kind: ServiceAccount
     name: argocd-applicationset-controller
@@ -21560,12 +21560,12 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21573,7 +21573,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
 subjects:
   - kind: ServiceAccount
     name: argocd-notifications-controller
@@ -21583,12 +21583,12 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21596,22 +21596,22 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
 subjects:
 - kind: ServiceAccount
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
 ---
 # Source: argo-cd/templates/argocd-server/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21619,7 +21619,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-server
+  name: argocd-server
 subjects:
 - kind: ServiceAccount
   name: argocd-server
@@ -21629,12 +21629,12 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: argo-argocd-dex-server
+  name: argocd-dex-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: dex-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21642,7 +21642,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-dex-server
+  name: argocd-dex-server
 subjects:
 - kind: ServiceAccount
   name: argocd-dex-server
@@ -21652,12 +21652,12 @@ subjects:
 apiVersion: v1
 kind: Service
 metadata:
-  name: argo-argocd-applicationset-controller
+  name: argocd-applicationset-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: applicationset-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21670,7 +21670,7 @@ spec:
     targetPort: webhook
   selector:
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
 ---
 # Source: argo-cd/templates/argocd-repo-server/service.yaml
 apiVersion: v1
@@ -21679,12 +21679,12 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
 spec:  
   ports:
@@ -21694,18 +21694,18 @@ spec:
     targetPort: repo-server
   selector:
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
 ---
 # Source: argo-cd/templates/argocd-server/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21724,18 +21724,18 @@ spec:
     targetPort: 8080
   selector:
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
 ---
 # Source: argo-cd/templates/dex/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: argo-argocd-dex-server
+  name: argocd-dex-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: dex-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21752,18 +21752,18 @@ spec:
     targetPort: grpc
   selector:
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
 ---
 # Source: argo-cd/templates/redis/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: argo-argocd-redis
+  name: argocd-redis
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21775,18 +21775,18 @@ spec:
     targetPort: redis
   selector:
     app.kubernetes.io/name: argocd-redis
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
 ---
 # Source: argo-cd/templates/argocd-applicationset/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-applicationset-controller
+  name: argocd-applicationset-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-applicationset-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: applicationset-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -21797,15 +21797,15 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-applicationset-controller
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       annotations:
-        checksum/cmd-params: ded3827da816e41a708e63249b5db4a075c4df7eac0734f9e48eba62403595b9
+        checksum/cmd-params: d993be6cab4778ea4b2122a36e07f60dc08f7692e21e6de96a27dc28e3a57aaa
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-applicationset-controller
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: applicationset-controller
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -22028,12 +22028,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-notifications-controller
+  name: argocd-notifications-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-notifications-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: notifications-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -22046,13 +22046,13 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-notifications-controller
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-notifications-controller
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: notifications-controller
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -22071,7 +22071,7 @@ spec:
             - --loglevel=info
             - --logformat=text
             - --namespace=kcef-system
-            - --argocd-repo-server=argo-argocd-repo-server:8081
+            - --argocd-repo-server=argocd-repo-server:8081
             - --secret-name=argocd-notifications-secret
           env:
             - name: ARGOCD_NOTIFICATIONS_CONTROLLER_LOGLEVEL
@@ -22149,12 +22149,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-repo-server
+  name: argocd-repo-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-repo-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -22165,23 +22165,23 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       annotations:
-        checksum/cmd-params: ded3827da816e41a708e63249b5db4a075c4df7eac0734f9e48eba62403595b9
-        checksum/cm: 514200472a774987ac64fd05bad5618546036381f3681a2929b128f3fe69dcee
+        checksum/cmd-params: d993be6cab4778ea4b2122a36e07f60dc08f7692e21e6de96a27dc28e3a57aaa
+        checksum/cm: 86679269e7a03b660b04c96a8b4d537cd46ea599ed5440ed3724f954874988c2
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-repo-server
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: repo-server
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
         app.kubernetes.io/version: "v2.11.3"
     spec:
       terminationGracePeriodSeconds: 30
-      serviceAccountName: argo-argocd-repo-server
+      serviceAccountName: argocd-repo-server
       automountServiceAccountToken: true
       containers:
       - name: repo-server
@@ -22193,7 +22193,7 @@ spec:
         - --metrics-port=8084
         env:
           - name: ARGOCD_REPO_SERVER_NAME
-            value: argo-argocd-repo-server
+            value: argocd-repo-server
           - name: ARGOCD_RECONCILIATION_TIMEOUT
             valueFrom:
               configMapKeyRef:
@@ -22293,13 +22293,13 @@ spec:
           - name: REDIS_SENTINEL_USERNAME
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-username
                 optional: true
           - name: REDIS_SENTINEL_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-password
                 optional: true
           - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
@@ -22520,12 +22520,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-server
+  name: argocd-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -22536,16 +22536,16 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-server
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       annotations:
-        checksum/cmd-params: ded3827da816e41a708e63249b5db4a075c4df7eac0734f9e48eba62403595b9
-        checksum/cm: 514200472a774987ac64fd05bad5618546036381f3681a2929b128f3fe69dcee
+        checksum/cmd-params: d993be6cab4778ea4b2122a36e07f60dc08f7692e21e6de96a27dc28e3a57aaa
+        checksum/cm: 86679269e7a03b660b04c96a8b4d537cd46ea599ed5440ed3724f954874988c2
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-server
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: server
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -22564,7 +22564,7 @@ spec:
         - --metrics-port=8083
         env:
           - name: ARGOCD_SERVER_NAME
-            value: argo-argocd-server
+            value: argocd-server
           - name: ARGOCD_SERVER_INSECURE
             valueFrom:
               configMapKeyRef:
@@ -22742,13 +22742,13 @@ spec:
           - name: REDIS_SENTINEL_USERNAME
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-username
                 optional: true
           - name: REDIS_SENTINEL_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-password
                 optional: true
           - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
@@ -22924,12 +22924,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-dex-server
+  name: argocd-dex-server
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-dex-server
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: dex-server
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -22940,15 +22940,15 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-dex-server
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       annotations:
-        checksum/cmd-params: ded3827da816e41a708e63249b5db4a075c4df7eac0734f9e48eba62403595b9
+        checksum/cmd-params: d993be6cab4778ea4b2122a36e07f60dc08f7692e21e6de96a27dc28e3a57aaa
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-dex-server
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: dex-server
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -23058,12 +23058,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-argocd-redis
+  name: argocd-redis
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -23079,7 +23079,7 @@ spec:
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-redis
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: redis
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -23136,7 +23136,7 @@ spec:
       volumes:
         - name: health
           configMap:
-            name: argo-argocd-redis-health-configmap
+            name: argocd-redis-health-configmap
             defaultMode: 493
       dnsPolicy: ClusterFirst
 ---
@@ -23144,12 +23144,12 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: argo-argocd-application-controller
+  name: argocd-application-controller
   namespace: kcef-system
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-application-controller
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: application-controller
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -23157,20 +23157,20 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 5
-  serviceName: argo-argocd-application-controller
+  serviceName: argocd-application-controller
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-application-controller
-      app.kubernetes.io/instance: argo
+      app.kubernetes.io/instance: argocd
   template:
     metadata:
       annotations:
-        checksum/cmd-params: ded3827da816e41a708e63249b5db4a075c4df7eac0734f9e48eba62403595b9
-        checksum/cm: 514200472a774987ac64fd05bad5618546036381f3681a2929b128f3fe69dcee
+        checksum/cmd-params: d993be6cab4778ea4b2122a36e07f60dc08f7692e21e6de96a27dc28e3a57aaa
+        checksum/cm: 86679269e7a03b660b04c96a8b4d537cd46ea599ed5440ed3724f954874988c2
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-application-controller
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: application-controller
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -23190,7 +23190,7 @@ spec:
           - name: ARGOCD_CONTROLLER_REPLICAS
             value: "1"
           - name: ARGOCD_APPLICATION_CONTROLLER_NAME
-            value: argo-argocd-application-controller
+            value: argocd-application-controller
           - name: ARGOCD_RECONCILIATION_TIMEOUT
             valueFrom:
               configMapKeyRef:
@@ -23320,13 +23320,13 @@ spec:
           - name: REDIS_SENTINEL_USERNAME
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-username
                 optional: true
           - name: REDIS_SENTINEL_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: argo-argocd-redis
+                name: argocd-redis
                 key: redis-sentinel-password
                 optional: true
           - name: ARGOCD_DEFAULT_CACHE_EXPIRATION
@@ -23455,7 +23455,7 @@ apiVersion: v1
 kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
-  name: argo-argocd-redis-secret-init
+  name: argocd-redis-secret-init
   namespace: "kcef-system"
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
@@ -23463,7 +23463,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis-secret-init
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis-secret-init
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -23479,12 +23479,12 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis-secret-init
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis-secret-init
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
-  name: argo-argocd-redis-secret-init
+  name: argocd-redis-secret-init
   namespace: "kcef-system"
 rules:
   - apiGroups:
@@ -23512,26 +23512,26 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis-secret-init
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis-secret-init
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.11.3"
-  name: argo-argocd-redis-secret-init
+  name: argocd-redis-secret-init
   namespace: "kcef-system"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: argo-argocd-redis-secret-init
+  name: argocd-redis-secret-init
 subjects:
   - kind: ServiceAccount
-    name: argo-argocd-redis-secret-init
+    name: argocd-redis-secret-init
 ---
 # Source: argo-cd/templates/redis-secret-init/job.yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: argo-argocd-redis-secret-init
+  name: argocd-redis-secret-init
   namespace: "kcef-system"
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
@@ -23539,7 +23539,7 @@ metadata:
   labels:
     helm.sh/chart: argo-cd-7.3.3
     app.kubernetes.io/name: argocd-redis-secret-init
-    app.kubernetes.io/instance: argo
+    app.kubernetes.io/instance: argocd
     app.kubernetes.io/component: redis-secret-init
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: argocd
@@ -23550,7 +23550,7 @@ spec:
       labels:
         helm.sh/chart: argo-cd-7.3.3
         app.kubernetes.io/name: argocd-redis-secret-init
-        app.kubernetes.io/instance: argo
+        app.kubernetes.io/instance: argocd
         app.kubernetes.io/component: redis-secret-init
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: argocd
@@ -23576,7 +23576,7 @@ spec:
           seccompProfile:
             type: RuntimeDefault
       restartPolicy: OnFailure
-      serviceAccountName: argo-argocd-redis-secret-init
+      serviceAccountName: argocd-redis-secret-init
 ---
 ---
 # Source: cilium/templates/cilium-agent/serviceaccount.yaml
@@ -23600,8 +23600,8 @@ metadata:
   name: cilium-ca
   namespace: kcef-system
 data:
-  ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGRENDQWZ5Z0F3SUJBZ0lSQU1LelltVVVmUTBOVzJIanhTTUF5WWN3RFFZSktvWklodmNOQVFFTEJRQXcKRkRFU01CQUdBMVVFQXhNSlEybHNhWFZ0SUVOQk1CNFhEVEkwTURjeE5ERTVORGcwTVZvWERUSTNNRGN4TkRFNQpORGcwTVZvd0ZERVNNQkFHQTFVRUF4TUpRMmxzYVhWdElFTkJNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUF5SG9UTDltNG92WWNwMWx2RDVUT2Fqb2cwUWpOcjZpR0YyaXB0TTZ2MElBWUJIRm0KektFN0Mxc1ZjbVNKYVNWV0NseEpTT0JvbURRL3dqeks2SlJIZmtUYmR0N1FqOUJnU01hYi8xb2lHS0ZNOUtnQgpYYXNHQ0Q4V0E1K1pnUE1tN0Ixd055Y2w4ajA5ejRiYXRBL2k0Zk5SaFlwc1dTMzc1RGhpK1Nob3FGNDVDdGFCCmtBdDkvbEJaOFlIa0JIUEsvMFFjanRPWVBEZ00wVVlid25lZitiY1d6ck1mV1JZZ2xzSUg0OVBEK3d6KzVOSC8Kc1VzdE5DdjU1Wkx6Tktid0wwbG1KRktlVVUxcXcvWDFrOUtVYXgzQ01YcXlxZGc1QVdQd21NalZ6dWZZMVl6TwpsbC9tc2YzdVVTWkx5cDlHYmtHd3ZUT3YrTjY4bDl1Ry9oOFlud0lEQVFBQm8yRXdYekFPQmdOVkhROEJBZjhFCkJBTUNBcVF3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUYKTUFNQkFmOHdIUVlEVlIwT0JCWUVGS3RLTFNWM1FSUTZyY3VuM2xJMk91Smo2STZ5TUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQ2FrUEpJS0c0VE9OTDNWZkoxTHVBY2c2TDA3clV5a1pIcTA3ZEE5VDZPOFQ3UGszcG1adXEvCnRyTDhGbFlDTUFScU5DdkdKTDZxRHhnUFhsdFlDaGNzNi9HTlNlRzlsdXVab1F4bTdjRDdyeW5ZT0dCbllyVmUKV0JpajU4dmxWSHFzcm1CTThGdUI4WFJ6WndyRWtOTDZoYWpyZk9XRnpYaEQxZkwzbVZGYWZWczVocnprWitJMgpkS0F1b0FZYS91V2RXUG1aRHNaOXZtSHFScTRBS2Vzc2QrOXpEQlBLdE5pMnlWQ2hPZHdxVEU3WWp3SHoydWtoCnhDd2Q1amRoUzNKenoxMWNMc1VXdFZoaVlMNjVxSFM4QWhva0NUSVMxTC9FVzJRNmFUVWZURnJoMmZmMHNXbzMKSXQ3M2p4UUQwK0c2bW85bTJTM1lOM2UrK05naGVVTmEKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-  ca.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBeUhvVEw5bTRvdlljcDFsdkQ1VE9ham9nMFFqTnI2aUdGMmlwdE02djBJQVlCSEZtCnpLRTdDMXNWY21TSmFTVldDbHhKU09Cb21EUS93anpLNkpSSGZrVGJkdDdRajlCZ1NNYWIvMW9pR0tGTTlLZ0IKWGFzR0NEOFdBNStaZ1BNbTdCMXdOeWNsOGowOXo0YmF0QS9pNGZOUmhZcHNXUzM3NURoaStTaG9xRjQ1Q3RhQgprQXQ5L2xCWjhZSGtCSFBLLzBRY2p0T1lQRGdNMFVZYnduZWYrYmNXenJNZldSWWdsc0lINDlQRCt3eis1TkgvCnNVc3ROQ3Y1NVpMek5LYndMMGxtSkZLZVVVMXF3L1gxazlLVWF4M0NNWHF5cWRnNUFXUHdtTWpWenVmWTFZek8KbGwvbXNmM3VVU1pMeXA5R2JrR3d2VE92K042OGw5dUcvaDhZbndJREFRQUJBb0lCQUZDZloxL3kreUh1UUErOQpFOEQ4WXhhdFVjMCs4UmtYZVBXcERiYTgrRSt0Yy9zMWI5WVRjUjliL2dBSEZvdkdqQmVXalpKVlRUc0lxQ3VCCkwwamhlTzc2Mmhldis4Z2FVTjV6b1FETVNySUZER0hIdnVUZ2hvaUNkbVAycDFFSWVEcTBqQkJpR2d5VlBHcGQKSFU4VXBIV2gyTU1QckFzaFJ3Kzg3WEN1STRpeHhXYWpKREpqdW9LOWxObjVSSStCV3QwZE9vdHRlQkJyRzU5bwpYZnpqaTVLL2JrTzdTekFEcjhNRkVGVGJIK0l5ZENxNFFjYkRiWERmRnVkcHAzK0lMcmh1Q3NIYXFuOWZ0dXVFCllzSC9YSU1HYlF5d3NCeWdvNjljLzd5ZS9kSEI1WXE0cG9xRGtHVVNTZFJxVkoyUDRyZFpHU1pnb3FpNEpBdVMKczYxbXRlRUNnWUVBMTVJcEtrK1VQOEVGZ2FlaHVvQWxsM3oyUnhDNG1xK2crQnhPM3UxcERKZitXMFB3UDAxNApZOC9FeGhYb0tMekcyRm1ROFVoRHppUzdsQm1rQWNKay9icjFjZ2ZDOTM5NWI5eGxyeGM4TlFLZEsvL3g4ZlB0CmFta05LamdNR3cyU2poOE1KcGdTK2VTYk5pWm1yUmpmekg0Ny8zMHc2T1B4NnJBQnZZR212UDBDZ1lFQTdoTTYKUlVsNjl0Zlk1T0dURjhEdmtuRGJ1aUpMNlN3TXBnZTQwNlZlcjNNdEZoMmI2cDY1SVhVQWtOblFoTm52RHhESgpXTFM5cW5ocDZWUExyUEFHMUpJZTJaT0RtcG1nS3RFNjVOMmU1VmxTUEJwU2diZThhZmQ3ZjlnNHJ6OWZ0ZzZGCmRqRkJNNzJ6c3U4NWg0b0pJMkdoRHlsMWY5b0pRSzFqd3BIRzdNc0NnWUFnc2haMFNHV2YxZExUKzJ6WU1KK0MKL24wTUFrazlqTzNKTStIeWhlZXM5VkNxM3Y4Tld0NnJwTk9maDZzU29xODJHVCtXbVBOUHpOcDJkLzBjRnpQaQpGLzBxTW1zcnhyWFFkWWttcVV1RWJzVVA2MTN5NktCVngyRXJ5aHhyN2Y4UWR6ME1qWHd6VXEwSDVZTWxOZVNiCnkzbW1Jb0xNaitZZFJseTlOWERvc1FLQmdRQ0xHVnJiYnJKVWxRcVp1QjVzSzRNT1NiaG55WEFXM1hES2RRcU4KUmpyTFFmMGV4Yy82UmlDZXByRGM4UlorK0tKUGFCeHNJcllLYXU1ZXNHSDVPZ2lUbklnLzBZdDhBYlJ1TCs4OApGeXltamdpWkt6djNwSFdHYUYyVTlhMHczMU01bU1ScnFSMlNjSTBVeCtjU0JSbVB2WlFQdXNaM0c5cDZHcFNGCjh3eUovd0tCZ0M5WGtkRW0vSmxHWHV0SU1EUDJ1MVZuQXBkTmZ3dTV4cTFjVTJ6OW9BSWhaWXJCVE1BOUFlcjMKZjZtaHFuU2NvRFNYb1dDci9ZUG9KdmkxczlMaitXdU5vVXZGbGlLMmRsSjh4Wjcxa2RCd092TWZMWUdSSjJkRgpHWDJ4cE1UVWtKZENnK1dZdmpodmxWcEowN2F6eE0xS3M2NEJVUTBzamlNdW1LVTl6eC9nCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+  ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGRENDQWZ5Z0F3SUJBZ0lSQVBnek94VGpqR2tBVkpFWGtQdVlRSW93RFFZSktvWklodmNOQVFFTEJRQXcKRkRFU01CQUdBMVVFQXhNSlEybHNhWFZ0SUVOQk1CNFhEVEkwTURjeE5ESXdOVE0wTWxvWERUSTNNRGN4TkRJdwpOVE0wTWxvd0ZERVNNQkFHQTFVRUF4TUpRMmxzYVhWdElFTkJNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUF1UWlSVkY2WnhkUGlhcFArRHhCWS8rM2NZcENLTlkvSCtXWmxic25XT1BzRXlvay8Kdk5sYk5xWElsM29SUGc2RXdoVVRLVFBQOUZOWE51ek1GZTVpemFKMGsraTA2b1h4dllOZmhvUm9VaTZ2MWxxQgpmaDFYY3VQMmdLcDNBNnU1cndFR3VSbTRQYVpaVCs5WitmZEM0RWMxY0ZENlgzTDUvV0tScjc1TGFQWHJrcmM2CmxLWjdTZzluTkZQUUZaSlh2WlAvY0VrUlovN29KVmw1dGwwUVpjWlh1bGtQcEdlY2tEU2p1Q3dZTzQrdG93d0wKS0RoSFNCdHAzU3lOVGhTM3pZUWdDckEzdzMzQUhaWUVZZTFBR0N0SmV5V1F0bWFJd1I1MEFLdnVEbmZad3VkVApxN0VSWDF2YXMvdUdKTkVEaUdCVVBYZVYrVGJDdVVjandVNXRhd0lEQVFBQm8yRXdYekFPQmdOVkhROEJBZjhFCkJBTUNBcVF3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUYKTUFNQkFmOHdIUVlEVlIwT0JCWUVGSzNjaTM3eHBSak5ncE5kay9WTDVOVFVUV1l0TUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQ1dzZzV6cmQ3UlVodEd1TVE5UnBzS0lIQ2xVTEpKNXcyS2ZXNnFWY2Z5MUUrM0IyZGZwMlNOCmc0TU1nQTAxUkdHN3dYaXBGTytqQjF3RVJwZE9PVnN0VC9EVzZHZUYyTVhuUjFsRUZidS9vdFA0NUVSTllsU2wKU0xWWkxUckdiQ1l4UFRhL09yYTkzNWZ5alpYNERvTHZwd3pMSkVkOTBhTUNmREtod3QrTVpwNTVhaThVS01KTgpkbHRUOVM5bFFVYXBMMTdsY0M0d2N2OHVIZjBkZlBNamdWRlo5WElRaVJ6NHAxSlpIVkgwclJXY3Y4QmNUbXNuCks2ZzJHYzkyaSs3ZGpSZk9udmZXZ05ybG55eTh5a1JiU0Z1SG9IRlE1MUg0VFk4K0VEZm56cEJUc1NsdkxET0oKcUluY1AxUDc4ZElrQ3pwbEwzaWlLTmpHQjJGR1hDOEwKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  ca.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBdVFpUlZGNlp4ZFBpYXBQK0R4QlkvKzNjWXBDS05ZL0grV1psYnNuV09Qc0V5b2svCnZObGJOcVhJbDNvUlBnNkV3aFVUS1RQUDlGTlhOdXpNRmU1aXphSjBrK2kwNm9YeHZZTmZob1JvVWk2djFscUIKZmgxWGN1UDJnS3AzQTZ1NXJ3RUd1Um00UGFaWlQrOVorZmRDNEVjMWNGRDZYM0w1L1dLUnI3NUxhUFhya3JjNgpsS1o3U2c5bk5GUFFGWkpYdlpQL2NFa1JaLzdvSlZsNXRsMFFaY1pYdWxrUHBHZWNrRFNqdUN3WU80K3Rvd3dMCktEaEhTQnRwM1N5TlRoUzN6WVFnQ3JBM3czM0FIWllFWWUxQUdDdEpleVdRdG1hSXdSNTBBS3Z1RG5mWnd1ZFQKcTdFUlgxdmFzL3VHSk5FRGlHQlVQWGVWK1RiQ3VVY2p3VTV0YXdJREFRQUJBb0lCQUZHWnE2M1BnblV4K2pvUwpSZ3FTcFExSTh0WXM5Q2FtNEFQbTJuaS9YbEFHczVnMmF2dDN4N2dUNktDVTNxSEZlVnEyUEpzQkZJYWxjbUx3Cmp4aGs1d0hVMFNDaGtaZVR0b1pqTjI5MVdTUlZIb3FqbzFQZzBMNEVOcU9MaWF6K3dJYWpKem5lVTlnc1VscmsKTFlRRlBXTDNSR1BoOG1qQnBlbk8zSHpxcVFzQ0dRYy9rYXVKczJZNmZIQW5sWHZuOWszMXc5T2V0WmRsNXc1RQpVRmJpdjNTRmJPZUJ6RWxaR2VNaUdmdGNvVGlMajFxWnU4YVY2OFlpeWFFWFFKTm1pSmVBYmJzYy8vZ2RNTEVlCmZxbnMxZ2JmT2xnTXdITStNS3VlOU40V2NNNitoVjhHcEF1KzkzblVISGpsZ1BWeTRVL245cm1ydzdUMTk0R3cKSlNGZHBQRUNnWUVBMjBCLzdxSGtLYW92ZDVVMjZsL01vYUlyQ3pDT1dqM3gvejZvd0tiQXRkcHlXek9RdklMSAp2NEVWaER6aFhrSlgzdzRIaHhXZmN4MjkrV1NlNkJqMVZuZ09ObUNOVVZlbHhCT2NKb05aMFlEenBBNW8vOURVClNJMkJTNit6c3MyWlRLc05aY2dyYm9FSm5YTk5OVmoyVDZadUJ1UWsvWHBlVmhucXRENFI2TjBDZ1lFQTJBdlkKdWNXT1RKZ1V4aW1rN3l5bEpqVmhMZGlSNkRMUzZCN0RsWU9VMjNJQloyMnhHaVpPZ1UrUnFKVkJ1TmpZZ0Q2cQpPQktDMTFxTGdDSFFDMVF6NEdkS1pNbkUxMk9ZanJ3RTlVMStnczVlOGZGQXlWOVNNYWpFU1NJTWRELzR5VDFmCkl3ZkxIeGpSNkt3UjF3aE1xQ0Z0QnIxeGxiVXlzaXkvZEpWZXB1Y0NnWUFkY21JOFNKMytRbzh4Zm1icnY0WWEKUjArRXB6YlhRKzZXbTNIS3ZocXYwZkQ5OHNVRHJJVHJZWWprUTlENCtld1hWeWtIcVkzS3hqblhudjRBcWlsNQpQWktiRndpajNpT3pXL2JpN1UxSTZBclJBK1p5UlRmZHJyT28yS1pINDNrdFpPUGR3YTZqbnMwTnlvaWFHNktwCk8rOFhHZGtsK2lObGFRR3V4NDljT1FLQmdETmkvZldSeTdya0lXelEwdTRnakZkK010TVl3L3VhdXhlQzJicGkKUmJHOGVDRUZzaTRxRmxvamR0M0dRbytZNUVYOG9iZ2Nqd3B4K3VSTEpwVExQbHVOdGVBckxhcWRnZGZSV015UAoxaHQrd282QmQ0dHVKTHF6RFp6bmdGYldNSEtOS21mR25zV1N2YnE5MHJCMnhPVG9ybW4vL1ZoQ2RRQjBMRVdxCmtZelpBb0dCQU5ZUlczaFBYaHRQQlAwMEVvNHo5VWV6dHE3MDVCZTB1c3ZrV3NLRGtVeGljTDJPQTk4WXYzcVUKSDhsbTNaTUllbnFlVVlxbmJPTThDb2E4VnRUdnk5OWdYN2JweVZhVlo3WHM5Um13MEpLY09pMWQzSUZXVEc5KwoxYjl5UVhIWWl3MjFXZHdjd203SCtKK1hLZ0pZaFlzQjBtWm55V21HaHZNMGJ4QjgydEc0Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
 ---
 # Source: cilium/templates/hubble/tls-helm/server-secret.yaml
 apiVersion: v1
@@ -23611,9 +23611,9 @@ metadata:
   namespace: kcef-system
 type: kubernetes.io/tls
 data:
-  ca.crt:  LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGRENDQWZ5Z0F3SUJBZ0lSQU1LelltVVVmUTBOVzJIanhTTUF5WWN3RFFZSktvWklodmNOQVFFTEJRQXcKRkRFU01CQUdBMVVFQXhNSlEybHNhWFZ0SUVOQk1CNFhEVEkwTURjeE5ERTVORGcwTVZvWERUSTNNRGN4TkRFNQpORGcwTVZvd0ZERVNNQkFHQTFVRUF4TUpRMmxzYVhWdElFTkJNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUF5SG9UTDltNG92WWNwMWx2RDVUT2Fqb2cwUWpOcjZpR0YyaXB0TTZ2MElBWUJIRm0KektFN0Mxc1ZjbVNKYVNWV0NseEpTT0JvbURRL3dqeks2SlJIZmtUYmR0N1FqOUJnU01hYi8xb2lHS0ZNOUtnQgpYYXNHQ0Q4V0E1K1pnUE1tN0Ixd055Y2w4ajA5ejRiYXRBL2k0Zk5SaFlwc1dTMzc1RGhpK1Nob3FGNDVDdGFCCmtBdDkvbEJaOFlIa0JIUEsvMFFjanRPWVBEZ00wVVlid25lZitiY1d6ck1mV1JZZ2xzSUg0OVBEK3d6KzVOSC8Kc1VzdE5DdjU1Wkx6Tktid0wwbG1KRktlVVUxcXcvWDFrOUtVYXgzQ01YcXlxZGc1QVdQd21NalZ6dWZZMVl6TwpsbC9tc2YzdVVTWkx5cDlHYmtHd3ZUT3YrTjY4bDl1Ry9oOFlud0lEQVFBQm8yRXdYekFPQmdOVkhROEJBZjhFCkJBTUNBcVF3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUYKTUFNQkFmOHdIUVlEVlIwT0JCWUVGS3RLTFNWM1FSUTZyY3VuM2xJMk91Smo2STZ5TUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQ2FrUEpJS0c0VE9OTDNWZkoxTHVBY2c2TDA3clV5a1pIcTA3ZEE5VDZPOFQ3UGszcG1adXEvCnRyTDhGbFlDTUFScU5DdkdKTDZxRHhnUFhsdFlDaGNzNi9HTlNlRzlsdXVab1F4bTdjRDdyeW5ZT0dCbllyVmUKV0JpajU4dmxWSHFzcm1CTThGdUI4WFJ6WndyRWtOTDZoYWpyZk9XRnpYaEQxZkwzbVZGYWZWczVocnprWitJMgpkS0F1b0FZYS91V2RXUG1aRHNaOXZtSHFScTRBS2Vzc2QrOXpEQlBLdE5pMnlWQ2hPZHdxVEU3WWp3SHoydWtoCnhDd2Q1amRoUzNKenoxMWNMc1VXdFZoaVlMNjVxSFM4QWhva0NUSVMxTC9FVzJRNmFUVWZURnJoMmZmMHNXbzMKSXQ3M2p4UUQwK0c2bW85bTJTM1lOM2UrK05naGVVTmEKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURWakNDQWo2Z0F3SUJBZ0lRVWg1eGNRRitiUDkzUlczbVdsMHJGakFOQmdrcWhraUc5dzBCQVFzRkFEQVUKTVJJd0VBWURWUVFERXdsRGFXeHBkVzBnUTBFd0hoY05NalF3TnpFME1UazBPRFF4V2hjTk1qY3dOekUwTVRrMApPRFF4V2pBcU1TZ3dKZ1lEVlFRRERCOHFMbVJsWm1GMWJIUXVhSFZpWW14bExXZHljR011WTJsc2FYVnRMbWx2Ck1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBNjlZUEk0S2FhdjEyK3pNRjdzNlEKbVVDVWZmUk5DYlVTRWtOLy9DZlRLb0xWU09pdUQ0NGp6dHFmcittMkhQaDQvV0czM21TclF0RFM1LzBnNVkxRwoxRlVjNzhqZ3JnU1F0eFpQUVNhWVc4cXVGMndSY0R5M2NuZGV0YUpadFVqeWcxV2t1WFp5VzlnNzZKYVlwVVRFCnVHTWNIWjl0Y1ZNSDRFZGhLZ01VWWJ3aEdRV3hhN3Z3bGJ2SUErTThyd2wwNGF2bTh6aUNVZ0syUVI4S0VxalYKRnBJeGJESlB4MUkyU0lGR2tPZ21kTXRsNW54MlpIZXF5M1JhU0NoLzJiTEFrd2VjdnVObUUwTFRMdFFxb1Z0NwpZY2xodzQ1dW93eThUN2o0em5zQmF4bS9MMmJzV0FpSHg4K2ZmeFB1UXcvQytrNHRBKzJFQkpKUHAwcW9JaHFDCmdRSURBUUFCbzRHTk1JR0tNQTRHQTFVZER3RUIvd1FFQXdJRm9EQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0QKQVFZSUt3WUJCUVVIQXdJd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JTclNpMGxkMEVVT3EzTApwOTVTTmpyaVkraU9zakFxQmdOVkhSRUVJekFoZ2g4cUxtUmxabUYxYkhRdWFIVmlZbXhsTFdkeWNHTXVZMmxzCmFYVnRMbWx2TUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDeG1pd2NBMTFENTk5QzRQM0VWTDRDR0I5Vy9mMXoKU0dJdnNCeHIvSUVnVi9rZzViKzRLUWRmV1lRK2JxcmoxYmVTVVV2eDFQOE1jZDgrVjFrRkdmMzF6ZnlzWSt2bwpkWkc4VEg3TFU5VWRwRitNVzZ0VFlBM1RMRDVOSGp2TC84RGFEdjg1S0FCU1pOVXptdFJDMDZaK3V2cjdMdXBiClgvSWdqaVlhQzU4ZkFQUldIRU9sTGk1YmovL2RteDZxTE5FMVBCTzNUNTBPYmU1Q1FBSDc0RXBoUXRkK05acUcKeGVUN3lPZnhUMEhLZGVxdW5WbHJyc1F2TTliejc3c2xhdlRFTllHSzgzTU1OMnRzOWd6VmMwcGtpeEtsZnJpOApzcU5EUk9uTGZIZHlrUCsvV3diQ1ZSMzJSbnlyUEJDK2RPQkNLaWRTekZQaVRKNTE5OGVCMGUxdwotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-  tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBNjlZUEk0S2FhdjEyK3pNRjdzNlFtVUNVZmZSTkNiVVNFa04vL0NmVEtvTFZTT2l1CkQ0NGp6dHFmcittMkhQaDQvV0czM21TclF0RFM1LzBnNVkxRzFGVWM3OGpncmdTUXR4WlBRU2FZVzhxdUYyd1IKY0R5M2NuZGV0YUpadFVqeWcxV2t1WFp5VzlnNzZKYVlwVVRFdUdNY0haOXRjVk1INEVkaEtnTVVZYndoR1FXeAphN3Z3bGJ2SUErTThyd2wwNGF2bTh6aUNVZ0syUVI4S0VxalZGcEl4YkRKUHgxSTJTSUZHa09nbWRNdGw1bngyClpIZXF5M1JhU0NoLzJiTEFrd2VjdnVObUUwTFRMdFFxb1Z0N1ljbGh3NDV1b3d5OFQ3ajR6bnNCYXhtL0wyYnMKV0FpSHg4K2ZmeFB1UXcvQytrNHRBKzJFQkpKUHAwcW9JaHFDZ1FJREFRQUJBb0lCQVFDWkwzU3I0eVI4UkdFcApiNDMxL1JTdGh1WXRIaWVBRzY0K1VMdnNSTTREK2ZHaUp3a1FyNG9RemE4VjY1L1FGNUUzUEdiYlBOYUZVdkQ3Cm9VN2g3QzlLc25KV1NrdXVuT2FIRmlXcXN2QWFCMytuVlJuS3BwV2Q4MjJBVzVFYmtPTjliWDdPdk9JeFNEWTUKc01BNzhYdzZMSjVSbTRIU0wxV1pWNlFFVHZYSk9OT3QxV0tOUjBRNWNNSHV3S1NBUnZ0dnA5UXF1Y2NWZXRxWQpoclI5YzRlV29kVFBHM25FanArWXpIUkhHeUNaV2hCWUg1ejEvb1RZYWpqNGZjcXNRVEw1LzU3bTRXV0cxNy8rCjhyejN1QnM4am5SSGM0OUg5L2JEekdNMTR3QTNaZStnYzI3dElUZFFpaGxGalEvSzRUbmUvclVEVEoxb1RHTG4KOERXWWcyOEJBb0dCQVBhOGh4RXVlcDhrQ1dDMkpkVysxS2Y3cWRkbUhJY2JPdHFYNFdZQ3QyQXUvR3pMOUswWApEOXVPU2phallrdEY1eEM0Z2RYaDM2dWNMN0gzYTlZMWVIZEZZYXdrcHBmS3I0ak1SWHFOblVwSW1tTWpkTXM0ClRBMnFpQmZOUmhYZDhGQzJndlJVS0tqZkdqbklOZFhQamhUUXgvQTV2U25TNEdUbWxrNktZK1Z4QW9HQkFQU3cKdytET0dwTU9Xd2lHRGlqUkM4ZysrVjgyVkx2KzZEeFhsWVVhTzQxUnpieE1HQzB2Y3ErbEwwU1dSZEUrM0VuRApySWFVeFQxRmFwNjh0eTdoMmZ5TVpmUTRRbXVTZFhVTjhmNWVHa3I2UmxFbklsd2pnQVlYeHJ4a0tYYVpiRWxTCnA1VVN3ZmxBTTB2eEFiTnh3QnhZV0JUdU5xeXZldXQ5a096NVFhWVJBb0dBYThUQ3RmVjRKNlJrMkRJVzZucFUKaGg2OCsxRWxhcm14QmlOS2x2VGV4WXNnUkNEOWVORFc0MDRPQ2psb3lIbjZ4K25mQTkySmhYcE50c3piOUE4YwowL09oQ3NCaloyOW5Kamdhck1ISUR0Y1JYL1h2b0lleGFGS3c2THlIUFN2WU9GalBjQXFHUytST255aGNvMHZwCndodkRDS0VmaDNJTkF1VlloMnVZNEhFQ2dZQXpZc2ZQOXhpSGwzVXdwZzVsTGZsK2RSTWpscUpXMUtKcXdhM3AKeE9lS3R3b3dwLzVQeHU0Ynl1SFJVb21ZOXMyR1JDeUFHdEFOSFAzV0ZpV1dGK0lTY2wyYTJ4Ry95NE1WTVBlSQpCclVZMTlSYWlKQmpyeVRjb3JPZXJwNHloT2ZEd2pMbFVJb2gwUVMweHdrbmFSVUNIdDlvamRvM2k2YVJ1ODNxCnBqSE9NUUtCZ0cyQU8zWTh2azdiYnpMTmYwaGlQOGpxZjZFcE5QNkh4cDU4TXRDOElBbWhiVnp2QlRORjZEVEYKbUw4YzRjdWliM3VDZHZFa0dCOEcxRmp1OVBWdDJVUEd5RVFMbnRoa2NwN1lhOUdLZUk3WmFDYmZIbVp5dGxlZQo5YnpDaXdEL3M4YkZKdXFBYmd2dWRNVW9YUFd3V3NQUTRLN0NlbkdMVHZoYUwycDNQVVhOCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+  ca.crt:  LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGRENDQWZ5Z0F3SUJBZ0lSQVBnek94VGpqR2tBVkpFWGtQdVlRSW93RFFZSktvWklodmNOQVFFTEJRQXcKRkRFU01CQUdBMVVFQXhNSlEybHNhWFZ0SUVOQk1CNFhEVEkwTURjeE5ESXdOVE0wTWxvWERUSTNNRGN4TkRJdwpOVE0wTWxvd0ZERVNNQkFHQTFVRUF4TUpRMmxzYVhWdElFTkJNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DCkFROEFNSUlCQ2dLQ0FRRUF1UWlSVkY2WnhkUGlhcFArRHhCWS8rM2NZcENLTlkvSCtXWmxic25XT1BzRXlvay8Kdk5sYk5xWElsM29SUGc2RXdoVVRLVFBQOUZOWE51ek1GZTVpemFKMGsraTA2b1h4dllOZmhvUm9VaTZ2MWxxQgpmaDFYY3VQMmdLcDNBNnU1cndFR3VSbTRQYVpaVCs5WitmZEM0RWMxY0ZENlgzTDUvV0tScjc1TGFQWHJrcmM2CmxLWjdTZzluTkZQUUZaSlh2WlAvY0VrUlovN29KVmw1dGwwUVpjWlh1bGtQcEdlY2tEU2p1Q3dZTzQrdG93d0wKS0RoSFNCdHAzU3lOVGhTM3pZUWdDckEzdzMzQUhaWUVZZTFBR0N0SmV5V1F0bWFJd1I1MEFLdnVEbmZad3VkVApxN0VSWDF2YXMvdUdKTkVEaUdCVVBYZVYrVGJDdVVjandVNXRhd0lEQVFBQm8yRXdYekFPQmdOVkhROEJBZjhFCkJBTUNBcVF3SFFZRFZSMGxCQll3RkFZSUt3WUJCUVVIQXdFR0NDc0dBUVVGQndNQ01BOEdBMVVkRXdFQi93UUYKTUFNQkFmOHdIUVlEVlIwT0JCWUVGSzNjaTM3eHBSak5ncE5kay9WTDVOVFVUV1l0TUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQ1dzZzV6cmQ3UlVodEd1TVE5UnBzS0lIQ2xVTEpKNXcyS2ZXNnFWY2Z5MUUrM0IyZGZwMlNOCmc0TU1nQTAxUkdHN3dYaXBGTytqQjF3RVJwZE9PVnN0VC9EVzZHZUYyTVhuUjFsRUZidS9vdFA0NUVSTllsU2wKU0xWWkxUckdiQ1l4UFRhL09yYTkzNWZ5alpYNERvTHZwd3pMSkVkOTBhTUNmREtod3QrTVpwNTVhaThVS01KTgpkbHRUOVM5bFFVYXBMMTdsY0M0d2N2OHVIZjBkZlBNamdWRlo5WElRaVJ6NHAxSlpIVkgwclJXY3Y4QmNUbXNuCks2ZzJHYzkyaSs3ZGpSZk9udmZXZ05ybG55eTh5a1JiU0Z1SG9IRlE1MUg0VFk4K0VEZm56cEJUc1NsdkxET0oKcUluY1AxUDc4ZElrQ3pwbEwzaWlLTmpHQjJGR1hDOEwKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURWekNDQWorZ0F3SUJBZ0lSQUpoZ0hxb0M0Q2UySnFkSG1zcFpDaDh3RFFZSktvWklodmNOQVFFTEJRQXcKRkRFU01CQUdBMVVFQXhNSlEybHNhWFZ0SUVOQk1CNFhEVEkwTURjeE5ESXdOVE0wTTFvWERUSTNNRGN4TkRJdwpOVE0wTTFvd0tqRW9NQ1lHQTFVRUF3d2ZLaTVrWldaaGRXeDBMbWgxWW1Kc1pTMW5jbkJqTG1OcGJHbDFiUzVwCmJ6Q0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUtYY01abEExSFdZWFJaL3JCOEQKblkxV2dHaDkvVHNqd2NnZUxvaE9weTIvMFdaTGJ1VklOV2lobUNDUzJmd045Qk1qRWgvZDRiUjZjcnFEbHFCdwp3cndHWWxXUUtxYnplQ2MvUTI4MHVidUdNZVVhbEZna3Y4SVI5TC9aekNHZUdITGJmd3ZCZUJyMnRWVmNBcHpaCndyWDFCL2J0NDVGbWNiM0Z4VTF5UEtlYzNaMk54azIxWTdrbURqNWdac3NmSVdpcWpscGtRSCs5d2lNS04yQ24KTjlDRWh3cHVZRVM5cnBJTUNSZG5VaTlVdTZZL3dyalNkQVA4NElNdmRzTmh6WmtiWmQzMFZHVGErbGFRcjNUTApHYTRDUXNqY0RZZmhrR2dwZm1oUXVvUm5tZnRZYlJwQy9sMndLcGhmemxPWGs5TGpzU1JNNTEvSzJta0Y0ZzJVCmFNMENBd0VBQWFPQmpUQ0JpakFPQmdOVkhROEJBZjhFQkFNQ0JhQXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUgKQXdFR0NDc0dBUVVGQndNQ01Bd0dBMVVkRXdFQi93UUNNQUF3SHdZRFZSMGpCQmd3Rm9BVXJkeUxmdkdsR00yQwprMTJUOVV2azFOUk5aaTB3S2dZRFZSMFJCQ013SVlJZktpNWtaV1poZFd4MExtaDFZbUpzWlMxbmNuQmpMbU5wCmJHbDFiUzVwYnpBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQUQzK0FEMitqZDdnRDYwWEtWa0NrWEMrbjA3N3UKTENkbHQvQmxKUzdKZXdZeXNFakhmbk5rejlZOGg5Ymd1dTBOK2F0YlNIdG10cVMrTERYUWg3L2lMYUh2UEhMMwo0ZWxYc1pzTFg0Y1NRa0lUTktObnZZMjJvdlc0Y1FGQ0lOb0hOM1QyaWlRbUFTcEdZSXBWdzFsSGQ4Zy96c3U3ClhZOHNNMHk5MW5Na3JSSDR5NFAzeEZtU0NJa1JreWU5aGxyMVhxNmJuVEVnc3llbTRwVCtjNXNHZlFnemRFN2cKZlVtMVoxY2MyZHErcDNoSEZ3c2t6Zjl1RUFaR3VXUUlUNFNOVDYwL0dUV3c3OTVWMHVLa3hvSExOSlRhY0JHaQphL21Ydk9KTHAzZVpodW1Fc29lc1pJMFA0WkRUS1N0N283Y0NwYjdDUUwzY2Y2alh0NksvdTRGUVJnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBcGR3eG1VRFVkWmhkRm4rc0h3T2RqVmFBYUgzOU95UEJ5QjR1aUU2bkxiL1Jaa3R1CjVVZzFhS0dZSUpMWi9BMzBFeU1TSDkzaHRIcHl1b09Xb0hEQ3ZBWmlWWkFxcHZONEp6OURielM1dTRZeDVScVUKV0NTL3doSDB2OW5NSVo0WWN0dC9DOEY0R3ZhMVZWd0NuTm5DdGZVSDl1M2prV1p4dmNYRlRYSThwNXpkblkzRwpUYlZqdVNZT1BtQm15eDhoYUtxT1dtUkFmNzNDSXdvM1lLYzMwSVNIQ201Z1JMMnVrZ3dKRjJkU0wxUzdwai9DCnVOSjBBL3pnZ3k5MncySE5tUnRsM2ZSVVpOcjZWcEN2ZE1zWnJnSkN5TndOaCtHUWFDbCthRkM2aEdlWisxaHQKR2tMK1hiQXFtRi9PVTVlVDB1T3hKRXpuWDhyYWFRWGlEWlJvelFJREFRQUJBb0lCQUViL0EwZ2JoUlkxT3h1SApXUkVKaGlaYThhcEl5OTNGeDR3Mnh5cFhxSjRmcnEyLytsOHcwcFBRSUFOSmVQKzRwVktQdjVGZWM5L0NUbHZpCk9kYkJqY25ZWGIxTWNjVjNFR2FVWVBRNE9JeTV1NS9iQ2NiVkxEUVJaWmU5emZCUjhSc3hNNmUvai83U3Zmb2sKNFlWc2ZUbFFBckhEVUpjTHFBSllwc1VvOGllNGdHWUIrOXpGdHloSEVhejFIa21wREUwUjRZNEp1OXczNWlsdApxWEpnU2p5Q1RlUzRaem94aTVNVW83Z04rVGxNQkJIeE00a0kzZTcwbHBwci9HVnV4emo1SmdhY3YxVDRoU0k0ClpJaGw2V3g3M0FsY1JPMlByeUJoZDhKN0JUN1dwT0hSTGhuRjk1NlFnMFU0S0hJaFVQd21aUlBwUSt4ODArbzQKdk1FajZzMENnWUVBMWpMVE9pbXArYXc0cE5vSFFQVmR4KzI2bzVsUTErc0p0SXlYQncrT2xUak9SU3FoelEzSgpsL3paYkI1ZHRWbmhjUGdWSnVQNnFTa2tJZmVWSzEwUHBXL3llZFY2b2dpRld3NHMrdmc5UExrTVZmTGZPOXQwCks5VFA3MHNvNGFkOGtZR2VvUVE3OEVLWkZWdHBiK0EvejlZcG5RSkg0SDk2ZmV1SmVmWCt3L01DZ1lFQXhqcHMKYWxVdU9wLzVtRUsvN1ZBcHJHNUNsSGo0MFVkMUhFYml0ckRPeVFwaERFNkxaRGk1MVNXTFV5Wk5vZGRkVXJZVAphbzlydzVldnpVWWYwQWJ3VU1XYkFEMUUyZG1DN2dWTEdzM3pSd0J0eloyQnJQL1d0SGd2eWpyYU1OOFNuMWcwCitaK0ZxT3oxaWZCRVhrMUtrL3Q5ejZ1Qy9TSGlMT0d0emJtUkVEOENnWUVBMWVRczMwQ3Bsa0x1MFZkU3RRQVAKcE14MGVsZG56aVRMTFRyU3VWOUVqeWdKZWpJSEhqOHRWcE5ML2RZWTF6WW9rK2wzSGIyOEdWMlcwa0JyK2NCVgpGbXZDWXZ6VkY2YVFuQXQ4eVNSSDZqSVM2bVM3bkFjWmE0ZDRHRWtpU3FzNERnaTBnYTg3dDBDWm95VUVGWTZGCnlpSGVyZ1dRQnRMbFc0WnZZcFZOMFJjQ2dZRUFvMGYyaTdQMGEyZmdzWEd5SkNsVzJtak1RUDVRZmhwdE5jaVIKOE1nODNNN0cxOXRPNkZQdGhzdnhNcUduYXJzNmJPbjdubGZhL1hiUjRiVjBlT2R1UmlvdkhnaFowVlJnaSswaQpTMGIvc0NtRFNNNEh4ZGZMSkVhbm50M1JZbFl0UWNIbmlRTEVsenZ3bVJtblIwSkZQeFgyTVB4bTNsbHRzMmlGCndLS3RBZ01DZ1lBbFdlQlREQlFnRVAxbjJNT0NGRXVwdXhjNkJ3VEpiSDR4c3JLSUN3NkpjcWpTUDhCdG5oWFEKS0hZN3lNL0xhaStEcUlkZERwKzlXcVA5M1pDRFVDak96cGpYZnRrZ0xucFFHVnJHWk94c21ZTGhNbVEwSmNPNAo3VUsvSjJMQjRuVVJjajdVUFFBS21RbmNIbUZmb0tTWnRUc09WbnRyb2phcmgyUHJSYnB1WVE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
 ---
 # Source: cilium/templates/cilium-configmap.yaml
 apiVersion: v1
@@ -24901,7 +24901,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: kcef-system
+  name: kcef
   namespace: kcef-system
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -24916,7 +24916,7 @@ spec:
     - group: '*'
       kind: '*'
   sourceNamespaces:
-    - kcef-system
+    - foundations
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

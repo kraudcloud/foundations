@@ -6,7 +6,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: kcef
+  project: kcef-system
   source:
     repoURL: https://openebs.github.io/dynamic-localpv-provisioner
     targetRevision: "4.1.0"
