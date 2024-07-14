@@ -1,0 +1,41 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kcef-system
+  namespace: kcef-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Kubernetes Cloud Enterprise Foundations
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  sourceNamespaces:
+    - kcef-system
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kcef-system
+  namespace: kcef-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kcef-system
+  source:
+    repoURL: https://github.com/kraudcloud/foundations.git
+    targetRevision: HEAD
+    path: charts/kcef-system
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kcef-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+
