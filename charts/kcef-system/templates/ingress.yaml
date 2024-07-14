@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress
+  namespace: kcef-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kcef
+  source:
+    repoURL: https://haproxytech.github.io/helm-charts
+    targetRevision: "1.40.*"
+    chart: kubernetes-ingres
+    helm:
+      valuesObject:
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kcef-systemsystem
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

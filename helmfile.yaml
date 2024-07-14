@@ -8,18 +8,23 @@ repositories:
   url: https://argoproj.github.io/argo-helm
 
 releases:
+
   - name: argocd
-    namespace: argocd
+    namespace: kcef-system
     chart: argo/argo-cd
     version: 7.3.3
     values:
       - configs:
           params:
-            application.namespaces: "argocd, foundations"
+            application.namespaces: "kcef-system"
 
+  - name: kcef-system
+    namespace: kcef-system
+    chart: ./charts/kcef-system/
+    version: 0.1.0
 
   - name: cilium
-    namespace: kube-system
+    namespace: kcef-system
     chart: cilium/cilium
     version: 1.15.7
     values:
