@@ -20,6 +20,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kcef-system
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true

@@ -28,9 +28,9 @@ spec:
         ipv6NativeRoutingCIDR: fd30:cccc::/16
 
         #TODO DSR doesnt work. i'm getting reset packets from nowhere
-        loadBalancer:
-           mode: dsr
-           dsrDispatch: geneve
+        #loadBalancer:
+        #   mode: dsr
+        #   dsrDispatch: geneve
 
         #their nat implementation chooses a random source address. so we need to use nftables
         enableIPv4Masquerade: false
@@ -75,7 +75,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kcef-system
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
 

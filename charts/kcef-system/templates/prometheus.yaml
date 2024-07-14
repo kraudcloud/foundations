@@ -19,7 +19,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kcef-system
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       # https://blog.ediri.io/kube-prometheus-stack-and-argocd-25-server-side-apply-to-the-rescue

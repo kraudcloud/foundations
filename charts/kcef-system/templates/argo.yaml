@@ -9,10 +9,40 @@ spec:
   project: kcef
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: "7.3.3"
+    targetRevision: "7.3.*"
     chart: argo-cd
     helm:
       valuesObject:
+        applicationSet:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        notification:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        repoServer:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        redis:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        dex:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        controller:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
         configs:
           params:
             application.namespaces: "kcef-system"
