@@ -2,8 +2,6 @@ repositories:
 
 - name: cilium
   url: https://helm.cilium.io/
-- name: localpv-provisioner
-  url: https://openebs.github.io/dynamic-localpv-provisioner
 - name: argo
   url: https://argoproj.github.io/argo-helm
 
@@ -28,10 +26,6 @@ releases:
     chart: cilium/cilium
     version: 1.15.7
     values:
-         # required for kubevirt to reach k8s services
-         - socketLB:
-             hostNamespaceOnly: true
-
          - routingMode: native
          - ipam:
              mode: kubernetes
@@ -41,11 +35,6 @@ releases:
          - ipv6:
              enabled: true
          - ipv6NativeRoutingCIDR: fd30:cccc::/16
-
-         # TODO DSR doesnt work. i'm getting reset packets from nowhere
-         #- loadBalancer:
-         #    mode: dsr
-         #    dsrDispatch: geneve
 
          # their nat implementation chooses a random source address. so we need to use nftables
          - enableIPv4Masquerade: false
@@ -57,30 +46,6 @@ releases:
          - kubeProxyReplacement: true
          - k8sServiceHost: k8s
          - k8sServicePort: 4443
-         - hubble:
-
-             enabled: true
-
-             relay:
-               enabled: true
-
-
-               # fixme: doesnt exist at bootstrap time
-               #prometheus:
-               #  enabled: true
-               #  serviceMonitor:
-               #    enabled: true
-
-             ui:
-               enabled: true
-
-             #metrics:
-             #  serviceMonitor:
-             #    enabled: true
-
-         # this replaces kube-vip entirely
-         - bgpControlPlane:
-             enabled: true
 
          # our underlay is l3, and this installs unresolveable ip neigh entries
          - l2NeighDiscovery:

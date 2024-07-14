@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo
+  namespace: kcef-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kcef
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: "7.3.3"
+    chart: argo-cd
+    helm:
+      valuesObject:
+        configs:
+          params:
+            application.namespaces: "kcef-system"
+          cm:
+            "resource.exclusions": |
+              - apiGroups:
+                  - cilium.io
+                kinds:
+                  - CiliumIdentity
+                clusters:
+                  - "*"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kcef-system
+  syncPolicy:
+    automated:
+      selfHeal: true
