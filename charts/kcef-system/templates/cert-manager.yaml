@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: kcef-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kcef-system
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: "1.13.3"
+    chart: cert-manager
+    helm:
+      valuesObject:
+        webhook:
+          hostNetwork: true
+          securePort: 10260
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kcef-system
+  syncPolicy:
+    automated: {}
+    syncOptions: []
+
