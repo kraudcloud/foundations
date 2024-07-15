@@ -13,6 +13,9 @@ spec:
     chart: cert-manager
     helm:
       valuesObject:
+        installCRDs: true
+        crds:
+          enabled: true
         webhook:
           hostNetwork: true
           securePort: 10260
