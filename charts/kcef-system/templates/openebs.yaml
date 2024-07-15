@@ -1,21 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: localpv-provisioner
+  name: openebs
   namespace: kcef-system
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: kcef-system
   source:
-    repoURL: https://openebs.github.io/dynamic-localpv-provisioner
+    repoURL: https://openebs.github.io/openebs
     targetRevision: "4.1.0"
-    chart: localpv-provisioner
+    chart: openebs
     helm:
       valuesObject:
-        analytics:
-          enabled: false
-          enables: false
+        engines:
+          replicated:
+            mayastor:
+              enabled: false
+        localpv-provisioner:
+          analytics:
+            enabled: false
+        lvm-localpv:
+          analytics:
+            enabled: false
+        zfs-localpv:
+          analytics:
+            enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: kcef-system
