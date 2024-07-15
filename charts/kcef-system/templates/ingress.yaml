@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://haproxytech.github.io/helm-charts
     targetRevision: "1.40.*"
-    chart: kubernetes-ingres
+    chart: kubernetes-ingress
     helm:
       valuesObject:
 
