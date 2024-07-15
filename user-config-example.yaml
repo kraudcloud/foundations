@@ -1,0 +1,50 @@
+---
+apiVersion: "v1"
+kind: ConfigMap
+metadata:
+  name: "vals"
+  namespace: "kcef-system"
+data:
+  kcef.yaml : |
+    kcef:
+      cloud:
+        region: ber1
+        publicIPs:
+          - cidr: 192.168.181.1/32
+          - cidr: 192.168.181.2/32
+---
+apiVersion: "v1"
+kind: Secret
+metadata:
+  name: "vals"
+  namespace: "kcef-system"
+data: {}
+
+
+  #---
+  #apiVersion: "cilium.io/v2alpha1"
+  #kind: CiliumBGPPeeringPolicy
+  #metadata:
+  # name: "cilium-bgp-peering-policy"
+  # namespace: "kcef-system"
+  #spec:
+  # virtualRouters:
+  #  - localASN: 65331
+  #    exportPodCIDR: false
+  #    neighbors:
+  #     - peerASN: 212440
+  #       peerAddress: 127.0.0.2/32
+  #    serviceSelector:
+  #      matchExpressions:
+  #         - {key: somekey, operator: NotIn, values: ['never-used-value']}
+  #---
+  #apiVersion: "cilium.io/v2alpha1"
+  #kind: CiliumLoadBalancerIPPool
+  #metadata:
+  #  name: "cilium-public-ip-pool"
+  #  namespace: "kcef-system"
+  #spec:
+  #  blocks:
+  #    - cidr: 192.168.181.1/32
+  #    - cidr: 192.168.181.2/32
+  #---
