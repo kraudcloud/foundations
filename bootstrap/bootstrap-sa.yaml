@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: foundations-admin
+  namespace: foundations
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: foundations-admin-clusterrole
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: foundations-admin-clusterrolebinding
+  namespace: foundations
+subjects:
+  - kind: ServiceAccount
+    name: foundations-admin
+    namespace: foundations
+roleRef:
+  kind: ClusterRole
+  name: foundations-admin-clusterrole
+  apiGroup: rbac.authorization.k8s.io

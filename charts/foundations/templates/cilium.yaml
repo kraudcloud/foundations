@@ -5,6 +5,7 @@ metadata:
   namespace: foundations
 spec:
   releaseName: cilium
+  serviceAccountName: foundations-admin
   chart:
     spec:
       chart: cilium
@@ -12,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: cilium
-        namespace:  foundations
+        namespace: foundations
   interval: 1h0m0s
   install:
     createNamespace: true

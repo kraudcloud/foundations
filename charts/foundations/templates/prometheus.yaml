@@ -11,10 +11,10 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: prometheus
-  namespace:  foundations
-
+  namespace: foundations
 spec:
   interval: 5m
+  serviceAccountName: foundations-admin
   chart:
     spec:
       chart: kube-prometheus-stack

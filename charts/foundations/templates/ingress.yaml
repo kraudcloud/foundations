@@ -5,6 +5,7 @@ metadata:
   namespace: foundations
 spec:
   releaseName: ingress
+  serviceAccountName: foundations-admin
   chart:
     spec:
       chart: kubernetes-ingress

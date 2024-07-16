@@ -5,6 +5,7 @@ metadata:
   namespace: foundations
 spec:
   releaseName: openebs
+  serviceAccountName: foundations-admin
   chart:
     spec:
       chart: openebs

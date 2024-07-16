@@ -14,6 +14,7 @@ metadata:
   namespace: foundations
 spec:
   interval: 5m
+  serviceAccountName: foundations-admin
   chart:
     spec:
       chart: cert-manager
