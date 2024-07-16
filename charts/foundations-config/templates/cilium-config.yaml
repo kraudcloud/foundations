@@ -26,5 +26,5 @@ spec:
   blocks: {{ .Values.foundations.cloud.publicIPs | toYaml | nindent 4 }}
 ---
 {{- end }}
-{{- end}}
-{{- end}}
+{{- end }}
+{{- end }}
