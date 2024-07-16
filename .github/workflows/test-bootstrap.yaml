@@ -1,0 +1,34 @@
+name: Test Bootstrap
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/setup-helm@v4.2.0
+      - uses: azure/setup-kubectl@v3
+      - uses: helm/kind-action@v1
+      - uses: actions/checkout@v4
+
+      - name: Bootstrap flux
+        run: |
+          kubectl create namespace foundations
+          kubectl create configmap foundations-config --from-file=values.yaml=/dev/stdin <<EOF
+          EOF
+
+          kubectl apply --namespace foundations --kustomize flux
+          helm install --namespace foundations foundations charts/foundations
+
+      - name: Wait for flux to be ready
+        run: |
+          kubectl wait --namespace foundations --for=condition=ready pod -l app=helm-controller --timeout=300s
+
+      # This means we entered the reconcile loop properly
+      - name: Wait for localpv-provisioner to be ready
+        run: |
+          kubectl wait --namespace foundations --for=condition=ready helmrelease openebs --timeout=300s
