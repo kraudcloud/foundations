@@ -6,6 +6,7 @@ metadata:
 spec:
   serviceAccountName: flux-admin
   interval: 1h0m0s
+  targetNamespace: foundations
   sourceRef:
     kind: GitRepository
     name: foundations

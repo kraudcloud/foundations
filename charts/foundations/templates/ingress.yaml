@@ -29,7 +29,7 @@ spec:
         enabled: true
         type: LoadBalancer
         externalTrafficPolicy: Local
-        {{- if .Values.foundations}}
+        {{- if .Values.foundations }}
         {{- if .Values.foundations.ingress }}
         {{- if .Values.foundations.ingress.public }}
         {{- if .Values.foundations.ingress.public.IP }}
