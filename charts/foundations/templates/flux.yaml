@@ -4,7 +4,7 @@ metadata:
   name: flux
   namespace: foundations
 spec:
-  serviceAccountName: foundations-admin
+  serviceAccountName: flux-admin
   interval: 1h0m0s
   sourceRef:
     kind: GitRepository

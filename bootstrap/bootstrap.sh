@@ -13,9 +13,6 @@ kubectl apply -f ${HERE}/user-skeleton.yaml
 # helm repo add cilium https://helm.cilium.io/
 helm install --namespace foundations cilium cilium/cilium --version 1.15.7 --values ${HERE}/cilium-values.yaml
 
-kubectl apply -k ${HERE}/../flux
+kubectl apply --namespace foundations --kustomize ${HERE}/../flux
 
-foundations_yaml=$(mktemp)
-kubectl get configmap foundations-config -n foundations -o jsonpath='{.data.foundations\.yaml}' >$foundations_yaml
-helm install --namespace foundations foundations ${HERE}/../charts/foundations --values $foundations_yaml
-rm $foundations_yaml
+helm install --namespace foundations foundations ${HERE}/../charts/foundations

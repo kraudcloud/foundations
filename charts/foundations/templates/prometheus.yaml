@@ -14,7 +14,7 @@ metadata:
   namespace: foundations
 spec:
   interval: 5m
-  serviceAccountName: foundations-admin
+  serviceAccountName: flux-admin
   chart:
     spec:
       chart: kube-prometheus-stack

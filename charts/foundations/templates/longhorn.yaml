@@ -6,7 +6,7 @@ metadata:
   namespace: foundations
 spec:
   releaseName: longhorn
-  serviceAccountName: foundations-admin
+  serviceAccountName: flux-admin
   chart:
     spec:
       chart: longhorn

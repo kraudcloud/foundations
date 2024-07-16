@@ -17,7 +17,7 @@ metadata:
   namespace: foundations
 spec:
   releaseName: foundations
-  serviceAccountName: foundations-admin
+  serviceAccountName: flux-admin
   interval: 1h0m0s
   install:
     remediation:
