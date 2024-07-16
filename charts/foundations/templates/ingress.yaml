@@ -29,11 +29,13 @@ spec:
         enabled: true
         type: LoadBalancer
         externalTrafficPolicy: Local
+        {{- if .Values.foundations}}
         {{- if .Values.foundations.ingress }}
         {{- if .Values.foundations.ingress.public }}
         {{- if .Values.foundations.ingress.public.IP }}
         annotations:
           io.cilium/lb-ipam-ips: "{{ .Values.foundations.ingress.public.IP }}"
+        {{- end }}
         {{- end }}
         {{- end }}
         {{- end }}
