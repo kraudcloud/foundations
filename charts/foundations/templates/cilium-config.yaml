@@ -1,0 +1,30 @@
+{{- if .Values.foundations }}
+{{- if .Values.foundations.cloud }}
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumBGPPeeringPolicy
+metadata:
+  name: "cilium-bgp-peering-policy"
+  namespace: "kcef-system"
+spec:
+virtualRouters:
+  - localASN: 65331
+    exportPodCIDR: false
+    neighbors:
+      - peerASN: 212440
+        peerAddress: 127.0.0.2/32
+    serviceSelector:
+      matchExpressions:
+        - {key: somekey, operator: NotIn, values: ["never-used-value"]}
+---
+{{- if .Values.foundations.cloud.publicIPs }}
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "{{ .Values.foundations.cloud.region }}-public"
+spec:
+  blocks: {{ .Values.foundations.cloud.publicIPs | toYaml | nindent 4 }}
+---
+{{- end }}
+{{- end}}
+{{- end}}

@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: play
+    branch: main
   url: https://github.com/kraudcloud/foundations.git
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -27,9 +27,13 @@ spec:
   chart:
     spec:
       chart: charts/foundations
-      version: "0.1.1"
+      version: "0.1.*"
       sourceRef:
         kind: GitRepository
         name: foundations
         namespace: foundations
+  valuesFrom:
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: foundations.yaml
 

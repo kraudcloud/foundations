@@ -16,7 +16,28 @@ spec:
   interval: 1h0m0s
   install:
     createNamespace: true
-  values: {}
+  values:
+    controller:
+      kind: Deployment
+      ingressClass: public
+      ingressClassResource:
+        name: public
+        enabled: true
+        default: false
+      service:
+        enabled: true
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        {{- if .Values.foundations.ingress }}
+        {{- if .Values.foundations.ingress.public }}
+        {{- if .Values.foundations.ingress.public.IP }}
+        annotations:
+          io.cilium/lb-ipam-ips: "{{ .Values.foundations.ingress.public.IP }}"
+        {{- end }}
+        {{- end }}
+        {{- end }}
+        loadBalancerClass: io.cilium/bgp-control-plane
+
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
