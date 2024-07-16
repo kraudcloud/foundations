@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-public-ingress
+  namespace: foundations
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: ingress-public
+      app.kubernetes.io/name: kubernetes-ingress
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
