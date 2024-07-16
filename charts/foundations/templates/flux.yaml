@@ -1,0 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux
+  namespace: foundations
+spec:
+  serviceAccountName: flux-admin
+  interval: 1h0m0s
+  sourceRef:
+    kind: GitRepository
+    name: foundations
+    namespace: foundations
+  path: "./flux"
+  prune: true
+  timeout: 1m
