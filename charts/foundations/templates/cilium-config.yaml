@@ -7,15 +7,15 @@ metadata:
   name: "cilium-bgp-peering-policy"
   namespace: "kcef-system"
 spec:
-virtualRouters:
-  - localASN: 65331
-    exportPodCIDR: false
-    neighbors:
-      - peerASN: 212440
-        peerAddress: 127.0.0.2/32
-    serviceSelector:
-      matchExpressions:
-        - {key: somekey, operator: NotIn, values: ["never-used-value"]}
+  virtualRouters:
+    - localASN: 65331
+      exportPodCIDR: false
+      neighbors:
+        - peerASN: 212440
+          peerAddress: 127.0.0.2/32
+      serviceSelector:
+        matchExpressions:
+          - {key: somekey, operator: NotIn, values: ["never-used-value"]}
 ---
 {{- if .Values.foundations.cloud.publicIPs }}
 apiVersion: "cilium.io/v2alpha1"
