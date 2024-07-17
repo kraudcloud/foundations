@@ -1,3 +1,4 @@
+{{- if or (not .Values.foundations) (not .Values.foundations.disable) (not .Values.foundations.disable.longhorn)  }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -35,3 +36,4 @@ metadata:
 spec:
   interval: 1h0m0s
   url: https://charts.longhorn.io
+{{- end}}
