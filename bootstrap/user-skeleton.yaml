@@ -7,8 +7,14 @@ metadata:
 data:
   foundations.yaml: |
     foundations:
-      cloud:
-      #   region: ber1
-      #   publicIPs:
-      #     - cidr: 192.168.181.1/32
-      #     - cidr: 192.168.181.2/32
+    #  disable:
+    #    cilium: true
+    #    longhorn: true
+    #    openebs: true
+    #    ingress: true
+    #  cloud:
+    #     region: ber1
+    #     publicIPs:
+    #       - cidr: 192.168.181.1/32
+    #       - cidr: 192.168.181.2/32
+

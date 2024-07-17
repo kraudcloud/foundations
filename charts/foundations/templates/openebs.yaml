@@ -1,3 +1,4 @@
+{{- if or (not .Values.foundations) (not .Values.foundations.disable) (not .Values.foundations.disable.openebs)  }}
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -44,3 +45,4 @@ metadata:
 spec:
   interval: 1h0m0s
   url: https://openebs.github.io/openebs
+{{- end}}
