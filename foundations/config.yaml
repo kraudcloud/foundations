@@ -6,11 +6,14 @@ metadata:
 data:
   foundations.yaml: |
     foundations:
+      clusterName: "bocchi"
+      intranetDomain: "bocchi.rocks" # results in cluster address being `https://k8s.bocchi.rocks`
     #  disable:
     #    cilium: true
     #    longhorn: true
     #    openebs: true
     #    ingress: true
+    #    klum: true
     #  cloud:
     #     region: ber1
     #     publicIPs:

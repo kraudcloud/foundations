@@ -1,0 +1,47 @@
+{{- if not ((.Values.foundations).disable).klum }}
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: klum
+spec:
+  interval: 30m
+  url: https://github.com/jadolg/klum
+  ref:
+    tag: v0.8.1
+  ignore: |
+    # exclude all
+    /*
+    # include deploy.yaml
+    !/deploy.yaml
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: klum
+  namespace: foundations
+spec:
+  targetNamespace: foundations
+  serviceAccountName: flux-admin
+  interval: 1h
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: klum
+    namespace: foundations
+  patches:
+    - target:
+        kind: Deployment
+        name: klum
+      patch: |
+        - op: replace
+          path: /spec/template/spec/containers/0/env
+          value:
+            - name: CONTEXT_NAME
+              value: {{ default "kubernetes" (.Values.foundations).intranetDomain | quote }}
+            - name: SERVER_NAME
+              value: {{ include "clusterComponent" (list "k8s" .) | quote }}
+            - name: NAMESPACE
+              value: {{ quote .Release.Namespace }}
+            - name: DEFAULT_CLUSTER_ROLE
+              value: "view"
+{{ end }}
