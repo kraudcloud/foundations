@@ -25,7 +25,7 @@ spec:
   targetNamespace: foundations
   serviceAccountName: flux-admin
   interval: 1h
-  prune: true
+  prune: false
   sourceRef:
     kind: GitRepository
     name: klum
