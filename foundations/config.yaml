@@ -20,5 +20,3 @@ data:
     #  klum:
     #    contextName: "kubernetes"
     #    serverAddress: "https://localhost:4443"
-    #    namespace: "foundations"
-    #    defaultRole: "view"

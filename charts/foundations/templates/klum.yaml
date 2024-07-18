@@ -43,7 +43,7 @@ spec:
             - name: SERVER_NAME
               value: {{ .Values.klum.serverAddress | default "https://localhost:4443" | quote }}
             - name: NAMESPACE
-              value: {{ .Values.klum.namespace | default .Release.Namespace | quote }}
+              value: {{ .Release.Namespace | quote }}
             - name: DEFAULT_CLUSTER_ROLE
-              value: {{ .Values.klum.defaultRole | default "view" | quote }}
+              value: "view"
 {{ end }}
