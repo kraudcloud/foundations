@@ -2,9 +2,6 @@ name: Test Bootstrap
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   test-bootstrap:
@@ -24,10 +21,18 @@ jobs:
           foundations:
             disable:
               cilium: true
+              ingress: true # depends on cilium
           EOF
+
+      - name: Pull the right branch in foundations
+        run: |
+          sed -i 's/branch: .*/branch: "${{ github.ref_name }}"/g' foundations/foundations.yaml
 
       - name: Bootstrap foundations
         run: kubectl apply --namespace foundations --kustomize foundations
 
       - name: Wait for foundations to be ready
         run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s helmrelease foundations
+
+      - name: Check that all releases are properly running
+        run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s helmrelease --all
