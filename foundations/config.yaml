@@ -6,8 +6,8 @@ metadata:
 data:
   foundations.yaml: |
     foundations:
-    #  clusterCode: "bocchi"
-    #  clusterAddress: "https://k8s.bocchi.rocks:4443"
+      clusterName: "bocchi"
+      intranetDomain: "bocchi.rocks" # results in cluster address being `https://k8s.bocchi.rocks`
     #  disable:
     #    cilium: true
     #    longhorn: true

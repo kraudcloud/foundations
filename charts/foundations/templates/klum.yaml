@@ -37,9 +37,9 @@ spec:
           path: /spec/template/spec/containers/0/env
           value:
             - name: CONTEXT_NAME
-              value: {{ default "kubernetes" (.Values.foundations).clusterCode | quote }}
+              value: {{ default "kubernetes" (.Values.foundations).intranetDomain | quote }}
             - name: SERVER_NAME
-              value: {{ default "https://localhost:4443" (.Values.foundations).clusterAddress | quote }}
+              value: {{ include "clusterComponent" (list "k8s" .) | quote }}
             - name: NAMESPACE
               value: {{ quote .Release.Namespace }}
             - name: DEFAULT_CLUSTER_ROLE
