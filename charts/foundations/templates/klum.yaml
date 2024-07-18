@@ -1,4 +1,4 @@
-{{- if or (not .Values.foundations) (not .Values.foundations.disable) (not .Values.foundations.disable.klum) }}
+{{- if not ((.Values.foundations).disable).klum }}
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -36,14 +36,10 @@ spec:
         - op: replace
           path: /spec/template/spec/containers/0/env
           value:
-            {{- $clusterCode := "kubernetes" }}
-            {{- $clusterAddress := "https://localhost:4443" }}
-            {{- if and .Values.foundations .Values.foundations.clusterCode }}{{ $clusterCode = .Values.foundations.clusterCode }}{{- end }}
-            {{- if and .Values.foundations .Values.foundations.clusterAddress }}{{ $clusterAddress = .Values.foundations.clusterAddress }}{{- end }}
             - name: CONTEXT_NAME
-              value: {{ quote $clusterCode }}
+              value: {{ default "kubernetes" (.Values.foundations).clusterCode | quote }}
             - name: SERVER_NAME
-              value: {{ quote $clusterAddress }}
+              value: {{ default "https://localhost:4443" (.Values.foundations).clusterAddress | quote }}
             - name: NAMESPACE
               value: {{ quote .Release.Namespace }}
             - name: DEFAULT_CLUSTER_ROLE

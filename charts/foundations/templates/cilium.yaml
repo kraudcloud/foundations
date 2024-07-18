@@ -1,4 +1,4 @@
-{{- if or (not .Values.foundations) (not .Values.foundations.disable) (not .Values.foundations.disable.cilium)  }}
+{{- if not ((.Values.foundations).disable).cilium }}
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
