@@ -11,8 +11,13 @@ data:
     #    longhorn: true
     #    openebs: true
     #    ingress: true
+    #    klum: true
     #  cloud:
     #     region: ber1
     #     publicIPs:
     #       - cidr: 192.168.181.1/32
     #       - cidr: 192.168.181.2/32
+    #  klum:
+    #    contextName: "kubernetes"
+    #    serverAddress: "https://localhost:4443"
+    #    namespace: "foundations"

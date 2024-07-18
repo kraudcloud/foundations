@@ -1,0 +1,47 @@
+{{- if or (not .Values.foundations) (not .Values.foundations.disable) (not .Values.foundations.disable.klum) }}
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: klum
+spec:
+  interval: 30m
+  url: https://github.com/jadolg/klum
+  ref:
+    tag: v0.8.1
+  ignore: |
+    # exclude all
+    /*
+    # include deploy.yaml
+    !/deploy.yaml
+---
+# Makes sure nothing crashes while keeping all defaults empty and the code simple
+# {{- if not .Values.klum }}{{- set .Values "klum" (dict) }}{{ end }}
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: klum
+  namespace: foundations
+spec:
+  targetNamespace: foundations
+  serviceAccountName: flux-admin
+  interval: 1h
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: klum
+    namespace: foundations
+  patches:
+    - target:
+        kind: Deployment
+        name: klum
+      patch: |
+        - op: replace
+          path: /spec/template/spec/containers/0/env
+          value:
+            - name: CONTEXT_NAME
+              value: {{ .Values.klum.contextName | default "kubernetes" | quote }}
+            - name: SERVER_NAME
+              value: {{ .Values.klum.serverAddress | default "https://localhost:4443" | quote }}
+            - name: NAMESPACE
+              value: {{ .Values.klum.namespace | default .Release.Namespace | quote }}
+{{ end }}
