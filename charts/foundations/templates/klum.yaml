@@ -14,8 +14,6 @@ spec:
     # include deploy.yaml
     !/deploy.yaml
 ---
-{{/* Makes sure nothing crashes while keeping all defaults empty and the code simple */}}
-{{- if not .Values.klum }}{{- set .Values "klum" (dict) }}{{ end }}
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -38,12 +36,16 @@ spec:
         - op: replace
           path: /spec/template/spec/containers/0/env
           value:
+            {{- $clusterCode := "kubernetes" }}
+            {{- $clusterAddress := "https://localhost:4443" }}
+            {{- if and .Values.foundations .Values.foundations.clusterCode }}{{ $clusterCode = .Values.foundations.clusterCode }}{{- end }}
+            {{- if and .Values.foundations .Values.foundations.clusterAddress }}{{ $clusterAddress = .Values.foundations.clusterAddress }}{{- end }}
             - name: CONTEXT_NAME
-              value: {{ .Values.klum.contextName | default "kubernetes" | quote }}
+              value: {{ quote $clusterCode }}
             - name: SERVER_NAME
-              value: {{ .Values.klum.serverAddress | default "https://localhost:4443" | quote }}
+              value: {{ quote $clusterAddress }}
             - name: NAMESPACE
-              value: {{ .Release.Namespace | quote }}
+              value: {{ quote .Release.Namespace }}
             - name: DEFAULT_CLUSTER_ROLE
               value: "view"
 {{ end }}

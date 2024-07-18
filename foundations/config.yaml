@@ -6,6 +6,8 @@ metadata:
 data:
   foundations.yaml: |
     foundations:
+    #  clusterCode: "bocchi"
+    #  clusterAddress: "https://k8s.bocchi.rocks:4443"
     #  disable:
     #    cilium: true
     #    longhorn: true
@@ -17,6 +19,3 @@ data:
     #     publicIPs:
     #       - cidr: 192.168.181.1/32
     #       - cidr: 192.168.181.2/32
-    #  klum:
-    #    contextName: "kubernetes"
-    #    serverAddress: "https://localhost:4443"
