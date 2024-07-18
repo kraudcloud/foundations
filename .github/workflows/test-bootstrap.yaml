@@ -2,9 +2,6 @@ name: Test Bootstrap
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   test-bootstrap:
@@ -16,19 +13,26 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Bootstrap flux
+        run: kubectl apply --namespace foundations --kustomize flux
+
+      - name: Create config
         run: |
-          kubectl create namespace foundations
-          kubectl create configmap foundations-config --from-file=values.yaml=/dev/stdin <<EOF
+          kubectl create configmap foundations-config --from-file=foundations.yaml=/dev/stdin --dry-run=client -oyaml <<EOF > foundations/config.yaml
+          foundations:
+            disable:
+              cilium: true
+              ingress: true # depends on cilium
           EOF
 
-          kubectl apply --namespace foundations --kustomize flux
-          helm install --namespace foundations foundations charts/foundations
-
-      - name: Wait for flux to be ready
+      - name: Pull the right branch in foundations
         run: |
-          kubectl wait --namespace foundations --for=condition=ready pod -l app=helm-controller --timeout=300s
+          sed -i 's/branch: .*/branch: "${{ github.ref_name }}"/g' foundations/foundations.yaml
 
-      # This means we entered the reconcile loop properly
-      - name: Wait for localpv-provisioner to be ready
-        run: |
-          kubectl wait --namespace foundations --for=condition=ready helmrelease openebs --timeout=300s
+      - name: Bootstrap foundations
+        run: kubectl apply --namespace foundations --kustomize foundations
+
+      - name: Wait for foundations to be ready
+        run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s helmrelease foundations
+
+      - name: Check that all releases are properly running
+        run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s helmrelease --all

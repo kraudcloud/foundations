@@ -28,7 +28,7 @@ Please contact support at kraud dot cloud for support.
 ![test](https://github.com/kraudcloud/foundations/actions/workflows/test-bootstrap.yaml/badge.svg)
 ![architecture](./bootstrap/bootstrap.png)
 
-In a clean cluster, edit `bootstrap/user-skeleton.yaml` then run `./bootstrap/bootstrap.sh`
+In a clean cluster, edit `foundations/config.yaml` then run `./bootstrap/bootstrap.sh`
 
 ## Upgrading
 
