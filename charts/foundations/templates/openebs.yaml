@@ -28,6 +28,12 @@ spec:
         mayastor:
           enabled: false
     localpv-provisioner:
+      hostpathClass:
+        enabled: true
+        xfsQuota:
+          enabled: true
+        #ext4Quota:
+        #  enabled: true
       analytics:
         enabled: false
     lvm-localpv:
