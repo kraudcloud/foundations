@@ -5,5 +5,5 @@ Usage:
     {{include "clusterComponent" (list "k8s" .)}}
 */}}
 {{- define "clusterComponent" -}}
-{{- printf "https://%s.%s" (first .) ((last .).Values.foundations).clusterDomain -}}
+{{- printf "https://%s.%s" (first .) ((last .).Values.foundations).intranetDomain -}}
 {{- end -}}
