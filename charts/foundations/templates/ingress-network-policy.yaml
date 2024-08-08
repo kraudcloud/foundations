@@ -12,9 +12,7 @@ spec:
   - Ingress
   - Egress
   ingress:
-  - from:
-    - ipBlock:
-        cidr: 0.0.0.0/0
+  - {}
   egress:
   - to:
     - ipBlock:
