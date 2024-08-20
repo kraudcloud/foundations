@@ -17,7 +17,7 @@ jobs:
 
       - name: Create config
         run: |
-          <<EOF > foundations/config/foundations.yaml
+          cat <<EOF > foundations/config/foundations.yaml
           foundations:
             disable:
               cilium: true
