@@ -21,10 +21,10 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: foundations-config
-      valuesKey: cilium.yaml
+      valuesKey: cilium-defaults.yaml
     - kind: ConfigMap
       name: foundations-config
-      valuesKey: cilium-defaults.yaml
+      valuesKey: cilium.yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
