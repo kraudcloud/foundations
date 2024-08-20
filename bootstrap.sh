@@ -10,8 +10,8 @@ set -ex
 kubectl create namespace --save-config foundations
 
 # helm repo add cilium https://helm.cilium.io/
-helm install --namespace foundations cilium cilium/cilium --version 1.15.7 --values ${HERE}/cilium-values.yaml
+helm install --namespace foundations cilium cilium/cilium --version 1.15.7 --values ${HERE}/foundations/config/cilium-defaults.yaml
 
-kubectl apply --namespace foundations --kustomize ${HERE}/../flux
+kubectl apply --namespace foundations --kustomize ${HERE}/flux
 
-kubectl apply --namespace foundations --kustomize ${HERE}/../foundations
+kubectl apply --namespace foundations --kustomize ${HERE}/foundations

@@ -18,35 +18,13 @@ spec:
   interval: 1h0m0s
   install:
     createNamespace: true
-  values:
-    socketLB:
-      hostNamespaceOnly: true
-    routingMode: native
-    ipam:
-      mode: kubernetes
-    endpointRoutes:
-      enabled: true
-    ipv4NativeRoutingCIDR: 10.0.0.0/8
-    ipv6:
-      enabled: true
-    ipv6NativeRoutingCIDR: fd30:cccc::/16
-    enableIPv4Masquerade: false
-    enableIPv6Masquerade: false
-    bpf:
-      hostLegacyRouting: true
-    kubeProxyReplacement: true
-    k8sServiceHost: k8s
-    k8sServicePort: 4443
-    hubble:
-      enabled: true
-      relay:
-        enabled: true
-      ui:
-        enabled: true
-    bgpControlPlane:
-      enabled: true
-    l2NeighDiscovery:
-      enabled: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: cilium.yaml
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: cilium-defaults.yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository

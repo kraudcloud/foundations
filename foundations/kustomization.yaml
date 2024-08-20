@@ -1,3 +1,15 @@
+namespace: foundations
 resources:
-  - config.yaml
-  - foundations.yaml
+  - release.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: foundations-config
+    files:
+      - config/foundations.yaml
+      - config/cilium.yaml
+      - config/cilium-defaults.yaml
+      - config/prometheus.yaml
+      - config/openebs.yaml

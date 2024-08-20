@@ -1,0 +1,19 @@
+engines:
+  replicated:
+    mayastor:
+      enabled: false
+localpv-provisioner:
+  hostpathClass:
+    enabled: true
+    xfsQuota:
+      enabled: true
+    #ext4Quota:
+    #  enabled: true
+  analytics:
+    enabled: false
+lvm-localpv:
+  analytics:
+    enabled: false
+zfs-localpv:
+  analytics:
+    enabled: false

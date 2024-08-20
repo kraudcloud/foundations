@@ -23,9 +23,10 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: foundations
-  values:
-    grafana:
-      enabled: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: foundations-config
+      valuesKey: prometheus.yaml
   install:
     createNamespace: true
   upgrade:

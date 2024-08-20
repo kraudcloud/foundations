@@ -17,7 +17,7 @@ jobs:
 
       - name: Create config
         run: |
-          kubectl create configmap foundations-config --from-file=foundations.yaml=/dev/stdin --dry-run=client -oyaml <<EOF > foundations/config.yaml
+          <<EOF > foundations/config/foundations.yaml
           foundations:
             disable:
               cilium: true
@@ -26,7 +26,7 @@ jobs:
 
       - name: Pull the right branch in foundations
         run: |
-          sed -i 's/branch: .*/branch: "${{ github.ref_name }}"/g' foundations/foundations.yaml
+          sed -i 's/branch: .*/branch: "${{ github.ref_name }}"/g' foundations/release.yaml
 
       - name: Bootstrap foundations
         run: kubectl apply --namespace foundations --kustomize foundations

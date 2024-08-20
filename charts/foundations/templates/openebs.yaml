@@ -22,26 +22,10 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  values:
-    engines:
-      replicated:
-        mayastor:
-          enabled: false
-    localpv-provisioner:
-      hostpathClass:
-        enabled: true
-        xfsQuota:
-          enabled: true
-        #ext4Quota:
-        #  enabled: true
-      analytics:
-        enabled: false
-    lvm-localpv:
-      analytics:
-        enabled: false
-    zfs-localpv:
-      analytics:
-        enabled: false
+  valuesFrom:
+  - kind: ConfigMap
+    name: foundations-config
+    valuesKey: openebs.yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
