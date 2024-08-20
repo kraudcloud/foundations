@@ -1,4 +1,9 @@
 {{- if not ((.Values.foundations).disable).klum }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: klum
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -41,7 +46,7 @@ spec:
             - name: SERVER_NAME
               value: {{ include "clusterComponent" (list "k8s" .) | quote }}
             - name: NAMESPACE
-              value: {{ quote .Release.Namespace }}
+              value: "klum"
             - name: DEFAULT_CLUSTER_ROLE
               value: "view"
 {{ end }}
