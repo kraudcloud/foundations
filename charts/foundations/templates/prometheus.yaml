@@ -26,6 +26,15 @@ spec:
   values:
     grafana:
       enabled: false
+    {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
+    prometheus:
+      prometheusSpec:
+        remoteWrite:
+          - url: {{ .Values.foundations.cloud.metricsCollectorUri | quote }}
+            name: collector
+            headers:
+              X-Scope-OrgID: {{ .Values.foundations.clusterName | quote }}
+    {{ end }}
   install:
     createNamespace: true
   upgrade:
