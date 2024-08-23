@@ -36,6 +36,9 @@ spec:
     - kind: ConfigMap
       name: foundations-config
       valuesKey: foundations.yaml
+    - kind: Secret
+      name: foundations-config
+      valuesKey: foundations.yaml
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
