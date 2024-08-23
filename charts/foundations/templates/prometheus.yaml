@@ -54,3 +54,13 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
+---
+{{ if ((.Values.foundations).cloud).metricsCollectorUri }}
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: foundations
+  name: metrics-collector-secret
+stringData:
+  password: {{ .Values.foundations.cloud.metricsCollectorPassword | quote }}
+{{ end }}
