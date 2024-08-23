@@ -33,10 +33,6 @@ spec:
         name: foundations
         namespace: foundations
   valuesFrom:
-    - kind: ConfigMap
-      name: foundations-config
-      valuesKey: foundations.yaml
-      optional: true
     - kind: Secret
       name: foundations-config
       valuesKey: foundations.yaml
@@ -67,10 +63,6 @@ spec:
   dependsOn:
     - name: foundations
   valuesFrom:
-    - kind: ConfigMap
-      name: foundations-config
-      valuesKey: foundations.yaml
-      optional: true
     - kind: Secret
       name: foundations-config
       valuesKey: foundations.yaml
