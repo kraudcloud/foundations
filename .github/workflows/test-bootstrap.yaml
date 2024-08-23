@@ -17,7 +17,7 @@ jobs:
 
       - name: Create config
         run: |
-          kubectl create configmap foundations-config --from-file=foundations.yaml=/dev/stdin --dry-run=client -oyaml <<EOF > foundations/config.yaml
+          cat <<EOF > foundations/config.yaml
           foundations:
             disable:
               cilium: true
