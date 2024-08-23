@@ -20,3 +20,13 @@ data:
     #       - cidr: 192.168.181.1/32
     #       - cidr: 192.168.181.2/32
     #     metricsCollectorUri: "http://<cortex>/prometheus/api/v1/push"
+---
+# If you enable metricsCollector, and it's properly configured
+# for basic_auth with that cluster name & a password, you can create this secret
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: foundations
+  name: metrics-collector-secret
+stringData:
+  password: ""

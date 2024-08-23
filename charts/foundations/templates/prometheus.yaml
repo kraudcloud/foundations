@@ -29,11 +29,25 @@ spec:
     {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
     prometheus:
       prometheusSpec:
+        basicAuth:
+          username: {{ .Values.foundations.clusterName }}
+          passwordFile: "/etc/metrics-collector/password"
         remoteWrite:
           - url: {{ .Values.foundations.cloud.metricsCollectorUri | quote }}
             name: collector
             headers:
               X-Scope-OrgID: {{ .Values.foundations.clusterName | quote }}
+        volumes:
+          - name: metrics-collector-secret
+            secret:
+              secretName: metrics-collector-secret
+              items:
+                - key: password
+                  path: password
+        volumeMounts:
+          - name: metrics-collector-secret
+            mountPath: /etc/metrics-collector
+            readOnly: true
     {{ end }}
   install:
     createNamespace: true
