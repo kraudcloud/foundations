@@ -1,3 +1,10 @@
 resources:
-  - config.yaml
   - foundations.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: foundations-config
+    files:
+      - foundations.yaml=config.yaml
