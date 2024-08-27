@@ -23,20 +23,22 @@ Please contact support at kraud dot cloud for support.
 ## Bootstrapping
 
 ![test](https://github.com/kraudcloud/foundations/actions/workflows/test-bootstrap.yaml/badge.svg)
-![architecture](./bootstrap/bootstrap.png)
+
+```mermaid
+graph LR
+    B["Create namespace"]
+    B --> C[Install Cilium]
+    C --> D[Install Flux]
+    D --> E[Install Foundations]
+    E -- "Takes Over" --> C
+    E -- "Takes Over" --> D
+    E -- "Self Manages" --> E
+```
 
 In a clean cluster, edit `foundations/config.yaml` then run `./bootstrap/bootstrap.sh`
 
 ## Upgrading
 
-### Flux
+Once you have a cluster in place, get your own copy of `./foundations` and use it to keep your cluster up to date. `./foundations/foundations.yaml` specifies the version of the helm chart to use.
 
-```sh
-flux install --export --namespace foundations > flux/flux.yaml
-```
-
-Then the source stuff will pick it up and it will auto-upgrade
-
-### Other components
-
-Upgrade the respective helm version in `./charts/foundations/templates`
+A manual step is required when upgrading to a chart that has breaking changes. The upgrade process for each breaking change will be described below.

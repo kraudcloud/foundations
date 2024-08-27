@@ -3,6 +3,9 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: klum
+  annotations:
+    # https://helm.sh/docs/howto/charts_tips_and_tricks/#tell-helm-not-to-uninstall-a-resource
+    helm.sh/resource-policy: keep
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
