@@ -24,7 +24,7 @@ jobs:
           update_chart() {
             local file=$1
             if ! grep -q "version: $VERSION" "$file"; then
-              sed -i "s/^version:.*/version: $VERSION/" "$file"!@
+              sed -i "s/^version:.*/version: $VERSION/" "$file"
               echo "Updated $file"
               git add "$file"
               CHANGED=1
@@ -42,6 +42,7 @@ jobs:
           else
             echo "No changes needed"
           fi
+        shell: /usr/bin/bash -e {0}
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.8.0
