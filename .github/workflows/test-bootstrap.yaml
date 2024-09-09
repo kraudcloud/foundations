@@ -11,6 +11,8 @@ jobs:
       - uses: azure/setup-kubectl@v3
       - uses: helm/kind-action@v1
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Bootstrap flux
         run: kubectl apply --namespace foundations --kustomize flux

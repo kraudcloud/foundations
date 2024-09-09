@@ -1,0 +1,51 @@
+name: Fixup Chart Versions
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  fixup-chart:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update Chart.yaml files
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+
+          update_chart() {
+            local file=$1
+            if ! grep -q "version: $VERSION" "$file"; then
+              sed -i "s/^version:.*/version: $VERSION/" "$file"!@
+              echo "Updated $file"
+              git add "$file"
+              CHANGED=1
+            fi
+          }
+
+          update_chart "charts/foundations-config/Chart.yaml"
+          update_chart "charts/foundations/Chart.yaml"
+
+          if [ "$CHANGED" = "1" ]; then
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git commit -m "Update Chart versions to $VERSION"
+            git push origin HEAD:${GITHUB_REF} --force
+          else
+            echo "No changes needed"
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
