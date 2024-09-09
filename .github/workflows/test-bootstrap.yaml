@@ -36,11 +36,17 @@ jobs:
                 - op: replace
                   path: /spec/ref
                   value:
-                    branch: "${{ github.ref_name }}"
+                    name: "${{ github.ref }}"
           EOF
 
       - name: Bootstrap foundations
         run: kubectl apply --namespace foundations --kustomize foundations
+
+      - name: Wait for foundations gitrepo to be ready
+        run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s gitrepository foundations
+
+      - name: Print the commit flux is running against
+        run: kubectl get gitrepository --namespace foundations foundations -ojsonpath='{.status.artifact.revision}'
 
       - name: Wait for foundations to be ready
         run: kubectl wait --namespace foundations --for=condition=ready --timeout=300s helmrelease foundations
