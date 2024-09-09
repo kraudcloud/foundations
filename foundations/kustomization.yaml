@@ -1,3 +1,4 @@
+namespace: foundations
 resources:
   - foundations.yaml
 

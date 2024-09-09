@@ -11,6 +11,8 @@ jobs:
       - uses: azure/setup-kubectl@v3
       - uses: helm/kind-action@v1
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Bootstrap flux
         run: kubectl apply --namespace foundations --kustomize flux
@@ -24,9 +26,18 @@ jobs:
               ingress: true # depends on cilium
           EOF
 
-      - name: Pull the right branch in foundations
+      - name: Patch foundations kustomization
         run: |
-          sed -i 's/branch: .*/branch: "${{ github.ref_name }}"/g' foundations/foundations.yaml
+          cat <<EOF >> foundations/kustomization.yaml
+          patches:
+            - target:
+                kind: GitRepository
+              patch: |-
+                - op: replace
+                  path: /spec/ref
+                  value:
+                    branch: "${{ github.ref_name }}"
+          EOF
 
       - name: Bootstrap foundations
         run: kubectl apply --namespace foundations --kustomize foundations
