@@ -1,4 +1,4 @@
-{{- if (.Values.foundations).cloud }}
+{{- if and (.Values.foundations).cloud (not ((.Values.foundations).disable).cilium ) }}
 ---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumBGPPeeringPolicy

@@ -12,5 +12,7 @@ foundations:
   #   publicIPs:
   #     - cidr: 192.168.181.1/32
   #     - cidr: 192.168.181.2/32
-  #   metricsCollectorUri: "http://<cortex>"
+  #   metricsCollectorUri: "https://<cortex>"
   #   metricsCollectorPassword: ""
+  #   alertsCollectorUri: "https://<alertmanager.example.com>"
+  #   alertsCollectorPassword: ""
