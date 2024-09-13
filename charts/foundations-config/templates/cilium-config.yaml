@@ -4,7 +4,6 @@ apiVersion: "cilium.io/v2alpha1"
 kind: CiliumBGPPeeringPolicy
 metadata:
   name: "cilium-bgp-peering-policy"
-  namespace: "kcef-system"
 spec:
   virtualRouters:
     - localASN: 65331

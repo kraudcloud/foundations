@@ -16,4 +16,4 @@ jobs:
       - name: Install helm unittest
         run: helm plugin install https://github.com/helm-unittest/helm-unittest --version v0.6.1
       - name: Run unittest
-        run: helm unittest charts/foundations
+        run: helm unittest charts/foundations charts/foundations-config
