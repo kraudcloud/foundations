@@ -1,0 +1,108 @@
+suite: test prometheus configuration
+templates:
+  - prometheus.yaml
+tests:
+  - it: should disable alertmanager when alertsCollectorUri is set
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.cloud.alertsCollectorUri: "http://example.com"
+    asserts:
+      - equal:
+          path: spec.values.alertmanager.enabled
+          value: false
+
+  - it: should enable alertmanager when alertsCollectorUri is not set
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.cloud.alertsCollectorUri: null
+    asserts:
+      - equal:
+          path: spec.values.alertmanager.enabled
+          value: true
+
+  - it: should set correct cluster name in external labels
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.clusterName: "test-cluster"
+    asserts:
+      - equal:
+          path: spec.values.prometheus.prometheusSpec.externalLabels.cluster
+          value: "test-cluster"
+
+  - it: should configure remoteWrite when metricsCollectorUri is set
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.cloud.metricsCollectorUri: "http://metrics-collector.example.com"
+      foundations.clusterName: "test-cluster"
+    asserts:
+      - isNotNullOrEmpty:
+          path: spec.values.prometheus.prometheusSpec.remoteWrite
+      - equal:
+          path: spec.values.prometheus.prometheusSpec.remoteWrite[0].url
+          value: "http://metrics-collector.example.com"
+      - equal:
+          path: spec.values.prometheus.prometheusSpec.remoteWrite[0].headers.X-Scope-OrgID
+          value: "test-cluster"
+
+  - it: should include basicAuth when metricsCollectorPassword is set
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.cloud.metricsCollectorUri: "http://metrics-collector.example.com"
+      foundations.cloud.metricsCollectorPassword: "secret-password"
+    asserts:
+      - isNotNullOrEmpty:
+          path: spec.values.prometheus.prometheusSpec.remoteWrite[0].basicAuth
+
+  - it: should configure additionalAlertManagerConfigs when alertsCollectorUri is set
+    documentSelector:
+      path: "apiVersion"
+      value: "helm.toolkit.fluxcd.io/v2"
+    set:
+      foundations.cloud.alertsCollectorUri: "https://alerts-collector.example.com"
+    asserts:
+      - isNotNullOrEmpty:
+          path: spec.values.prometheus.prometheusSpec.additionalAlertManagerConfigs
+      - equal:
+          path: spec.values.prometheus.prometheusSpec.additionalAlertManagerConfigs[0].static_configs[0].targets[0]
+          value: "alerts-collector.example.com"
+      - equal:
+          path: spec.values.prometheus.prometheusSpec.additionalAlertManagerConfigs[0].scheme
+          value: "https"
+
+  - it: should create metrics-collector-secret when metricsCollectorPassword is set
+    documentSelector:
+      path: metadata.name
+      value: metrics-collector-secret
+    set:
+      foundations.cloud.metricsCollectorUri: "http://metrics-collector.example.com"
+      foundations.cloud.metricsCollectorPassword: "secret-password"
+      foundations.clusterName: "test-cluster"
+    asserts:
+      - equal:
+          path: stringData.username
+          value: "test-cluster"
+      - equal:
+          path: stringData.password
+          value: "secret-password"
+
+  - it: should create alerts-collector-secret when alertsCollectorPassword is set
+    documentSelector:
+      path: metadata.name
+      value: alerts-collector-secret
+    set:
+      foundations.cloud.alertsCollectorUri: "https://alerts-collector.example.com"
+      foundations.cloud.alertsCollectorPassword: "alerts-secret"
+    asserts:
+      - equal:
+          path: stringData.password
+          value: "alerts-secret"

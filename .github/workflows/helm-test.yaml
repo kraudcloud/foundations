@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: azure/setup-helm@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install helm unittest
+        run: helm plugin install https://github.com/helm-unittest/helm-unittest --version v0.6.1
+      - name: Run unittest
+        run: helm unittest charts/foundations
