@@ -1,0 +1,57 @@
+suite: test cilium config
+templates:
+  - cilium-config.yaml
+tests:
+  - it: should render CiliumBGPPeeringPolicy when foundations.cloud is set and cilium is not disabled
+    set:
+      foundations:
+        cloud:
+          region: test-region
+        disable:
+          cilium: false
+    documentSelector:
+      path: kind
+      value: CiliumBGPPeeringPolicy
+    asserts:
+      - equal:
+          path: metadata.name
+          value: cilium-bgp-peering-policy
+      - equal:
+          path: spec.virtualRouters[0].neighbors[0].peerAddress
+          value: 127.0.0.2/32
+
+  - it: should render CiliumLoadBalancerIPPool when foundations.cloud.publicIPs is set
+    documentSelector:
+      path: kind
+      value: CiliumLoadBalancerIPPool
+    set:
+      foundations:
+        cloud:
+          region: test-region
+          publicIPs:
+            - 10.0.0.1/32
+            - 10.0.0.2/32
+    asserts:
+      - equal:
+          path: metadata.name
+          value: test-region-public
+      - equal:
+          path: spec.blocks
+          value:
+            - 10.0.0.1/32
+            - 10.0.0.2/32
+
+  - it: should not render anything when foundations.cloud is not set
+    set: {}
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not render anything when cilium is disabled
+    set:
+      foundations:
+        disable:
+          cilium: true
+    asserts:
+      - hasDocuments:
+          count: 0
