@@ -26,9 +26,17 @@ spec:
   values:
     grafana:
       enabled: false
-    {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
+    alertmanager:
+      enabled: {{ eq (((.Values.foundations).cloud).alertsCollectorUri) nil }}
     prometheus:
       prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        externalLabels:
+          cluster: {{ .Values.foundations.clusterName | quote }}
+        {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
         remoteWrite:
           - url: {{ .Values.foundations.cloud.metricsCollectorUri | quote }}
             name: collector
@@ -43,7 +51,27 @@ spec:
                 name: metrics-collector-secret
                 key: password
             {{ end }}
-    {{ end }}
+        {{ end }}
+        {{ if ((.Values.foundations).cloud).alertsCollectorUri }}
+        {{ if ((.Values.foundations).cloud).alertsCollectorPassword }}
+        secrets:
+          - alerts-collector-secret
+        {{ end }}
+        additionalAlertManagerConfigs:
+          - static_configs:
+            {{ with $url := urlParse ((.Values.foundations).cloud).alertsCollectorUri }}
+              - targets:
+                  - {{index $url "host" | quote }}
+            scheme: {{index $url "scheme" | default "https" | quote }}
+            {{ end }}
+            {{ if ((.Values.foundations).cloud).alertsCollectorPassword }}
+            basic_auth:
+              username: {{ .Values.foundations.clusterName | quote }}
+              password_file: /etc/prometheus/secrets/alerts-collector-secret/password
+            {{ end }}
+        alerting:
+          alertmanagers: []
+        {{ end }}
   install:
     createNamespace: true
   upgrade:
@@ -60,4 +88,14 @@ metadata:
 stringData:
   username: {{ .Values.foundations.clusterName | quote }}
   password: {{ .Values.foundations.cloud.metricsCollectorPassword | quote }}
+{{ end }}
+---
+{{ if and ((.Values.foundations).cloud).alertsCollectorUri .Values.foundations.cloud.alertsCollectorPassword }}
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: foundations
+  name: alerts-collector-secret
+stringData:
+  password: {{ .Values.foundations.cloud.alertsCollectorPassword | quote }}
 {{ end }}
