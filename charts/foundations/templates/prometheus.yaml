@@ -26,9 +26,15 @@ spec:
   values:
     grafana:
       enabled: false
-    {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
     prometheus:
       prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        externalLabels:
+          cluster: {{ .Values.foundations.clusterName | quote }}
+        {{ if ((.Values.foundations).cloud).metricsCollectorUri }}
         remoteWrite:
           - url: {{ .Values.foundations.cloud.metricsCollectorUri | quote }}
             name: collector
@@ -43,7 +49,7 @@ spec:
                 name: metrics-collector-secret
                 key: password
             {{ end }}
-    {{ end }}
+        {{ end }}
   install:
     createNamespace: true
   upgrade:
